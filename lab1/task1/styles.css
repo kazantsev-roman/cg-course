@@ -1,0 +1,74 @@
+.letter-K
+{
+	fill: red;
+}
+
+.letter-K:nth-child(2)
+{
+	transform: rotate(-145deg)
+}
+
+.letter-K:nth-child(3)
+{
+	transform: rotate(-38deg)
+}
+
+.animate-K {
+	animation-name: animate-K;
+	animation-timing-function: linear;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes animate-K {
+	0%   { transform: translateY(0); }
+	20%  { transform: translateY(-20px); }
+	40% { transform: translateY(0); }
+}
+
+
+.letter-R
+{
+	fill: green;
+}
+.letter-R:nth-child(3)
+{
+	fill: white;
+}
+
+.animate-R {
+	animation-name: animate-R;
+	animation-timing-function: linear;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes animate-R {
+	20%   { transform: translateY(0); }
+	40%  { transform: translateY(-20px); }
+	60% { transform: translateY(0); }
+}
+
+
+.letter-S
+{
+	fill: blue;
+}
+
+.letter-S:nth-child(2)
+{
+	fill: white;
+}
+
+.animate-S {
+	 animation-name: animate-S;
+	 animation-timing-function: linear;
+	 animation-duration: 1s;
+	 animation-iteration-count: infinite;
+ }
+
+@keyframes animate-S {
+	40%   { transform: translateY(0); }
+	60%  { transform: translateY(-20px); }
+	80% { transform: translateY(0); }
+}
