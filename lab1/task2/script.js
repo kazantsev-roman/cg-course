@@ -20,13 +20,17 @@ image.onmousedown = function(event) {
         let positionX = event.pageX - shiftX
         let positionY = event.pageY - shiftY
 
-        const borderX = pageWidth - image.getBoundingClientRect().width
-        const borderY = pageHeight - image.getBoundingClientRect().height
+        const minBorderX = 0
+        const maxBorderX = pageWidth - image.getBoundingClientRect().width
 
-        positionX = positionX < 0 ? 0 : positionX
-        positionX = positionX > borderX ? borderX : positionX
-        positionY = positionY < 0 ? 0 : positionY
-        positionY = positionY > borderY ? borderY : positionY
+        const minBorderY = 0
+        const maxBorderY = pageHeight - image.getBoundingClientRect().height
+
+        positionX = positionX < minBorderX ? minBorderX : positionX
+        positionX = positionX > maxBorderX ? maxBorderX : positionX
+
+        positionY = positionY < minBorderY ? minBorderY : positionY
+        positionY = positionY > maxBorderY ? maxBorderY : positionY
 
         image.style.left = positionX + 'px'
         image.style.top = positionY + 'px'
