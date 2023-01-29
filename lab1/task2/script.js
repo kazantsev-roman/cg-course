@@ -1,4 +1,6 @@
 const image = document.getElementById('svg')
+const pageWidth = 5760
+const pageHeight = 2937
 
 image.onmousedown = function(event) {
     let shiftX = event.clientX - image.getBoundingClientRect().left
@@ -18,8 +20,8 @@ image.onmousedown = function(event) {
         let positionX = pageX - shiftX
         let positionY = pageY - shiftY
 
-        const borderX = 5760 - image.getBoundingClientRect().width
-        const borderY = 2937 - image.getBoundingClientRect().height
+        const borderX = pageWidth - image.getBoundingClientRect().width
+        const borderY = pageHeight - image.getBoundingClientRect().height
 
         positionX = positionX < 0 ? 0 : positionX
         positionX = positionX > borderX ? borderX : positionX
