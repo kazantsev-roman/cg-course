@@ -16,9 +16,9 @@ image.onmousedown = function(event) {
 
     onMouseDown()
 
-    function moveAt(pageX, pageY) {
-        let positionX = pageX - shiftX
-        let positionY = pageY - shiftY
+    function onMouseMove(event) {
+        let positionX = event.pageX - shiftX
+        let positionY = event.pageY - shiftY
 
         const borderX = pageWidth - image.getBoundingClientRect().width
         const borderY = pageHeight - image.getBoundingClientRect().height
@@ -30,10 +30,6 @@ image.onmousedown = function(event) {
 
         image.style.left = positionX + 'px'
         image.style.top = positionY + 'px'
-    }
-
-    function onMouseMove(event) {
-        moveAt(event.pageX, event.pageY)
     }
 
     function onMouseUp() {
