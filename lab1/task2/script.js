@@ -1,5 +1,5 @@
-const pageWidth = 5760
-const pageHeight = 2937
+const pageWidth = 1920
+const pageHeight = 979
 
 let shiftX = 0
 let shiftY = 0
