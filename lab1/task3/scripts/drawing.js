@@ -10,6 +10,11 @@ function drawPixel(canvas, x, y, color) {
     ctx.fill()
 }
 
+function isPixelInWindow(canvas, x, y)
+{
+    return 0 <= x && x <= canvas.width && 0 <= y && y <= canvas.height
+}
+
 function drawCircle(canvas, radius, center, color)
 {
     let x = 0
@@ -20,15 +25,15 @@ function drawCircle(canvas, radius, center, color)
 
     while (y >= x)
     {
-        drawPixel(canvas, center.x + x, center.y + y, color)
-        drawPixel(canvas, center.x + x, center.y - y, color)
-        drawPixel(canvas, center.x - x, center.y + y, color)
-        drawPixel(canvas, center.x - x, center.y - y, color)
+        isPixelInWindow(canvas, center.x + x, center.y + y) && drawPixel(canvas, center.x + x, center.y + y, color)
+        isPixelInWindow(canvas, center.x + x, center.y - y) && drawPixel(canvas, center.x + x, center.y - y, color)
+        isPixelInWindow(canvas, center.x - x, center.y + y) && drawPixel(canvas, center.x - x, center.y + y, color)
+        isPixelInWindow(canvas, center.x - x, center.y - y) && drawPixel(canvas, center.x - x, center.y - y, color)
 
-        drawPixel(canvas, center.x + y, center.y + x, color)
-        drawPixel(canvas, center.x + y, center.y - x, color)
-        drawPixel(canvas, center.x - y, center.y + x, color)
-        drawPixel(canvas, center.x - y, center.y - x, color)
+        isPixelInWindow(canvas, center.x + y, center.y + x) && drawPixel(canvas, center.x + y, center.y + x, color)
+        isPixelInWindow(canvas, center.x + y, center.y - x) && drawPixel(canvas, center.x + y, center.y - x, color)
+        isPixelInWindow(canvas, center.x - y, center.y + x) && drawPixel(canvas, center.x - y, center.y + x, color)
+        isPixelInWindow(canvas, center.x - y, center.y - x) && drawPixel(canvas, center.x - y, center.y - x, color)
 
         error = 2 * (delta + y) - 1
 
