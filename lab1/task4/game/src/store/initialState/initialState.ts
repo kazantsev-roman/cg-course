@@ -1,7 +1,7 @@
 import questions from "./russian/questions";
 import getRandomElementFromArray from "../../utils/getRandomElementFromArray";
 import alphabet from "./russian/alphabet";
-import GameState from "../types/GameState";
+import { GameState, LetterData } from "../types/GameState";
 
 function getInitialState(): GameState
 {
@@ -21,6 +21,7 @@ function getInitialState(): GameState
 		alphabet: newAlphabet,
 		question: question.question,
 		answer: question.answer.toUpperCase(),
+		usedLetters: [] as Array<LetterData>,
 		numberOfAttempts: 10,
 		maxNumberOfAttempts: 10
 	}

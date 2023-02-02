@@ -14,7 +14,7 @@ function Letter({letter, used, correct}: LetterProps)
 
 	function markLetter()
 	{
-		!used && dispatch(markLetterAsUsedAction(letter))
+		!used && dispatch(markLetterAsUsedAction({letter, used, correct}))
 	}
 
 	return (

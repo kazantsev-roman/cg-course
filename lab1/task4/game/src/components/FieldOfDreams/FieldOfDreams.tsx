@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import GameState from "../../store/types/GameState";
+import { GameState } from "../../store/types/GameState";
 import Letter from "./Letter/Letter";
 import styles from "./FieldOfDreams.module.css"
 import Answer from "./Answer/Answer";
@@ -7,7 +7,7 @@ import Answer from "./Answer/Answer";
 function FieldOfDreams()
 {
 	const question = useSelector((state: GameState) => state.question)
-	const usedLetters = useSelector((state: GameState) => state.alphabet.filter(value => value.used))
+	const usedLetters = useSelector((state: GameState) => state.usedLetters)
 	const numberOfAttempts = useSelector((state: GameState) => state.numberOfAttempts)
 	const alphabet = useSelector((state: GameState) => state.alphabet)
 
