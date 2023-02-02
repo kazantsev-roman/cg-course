@@ -7,7 +7,7 @@ type NewGameAction = {
 
 type MarkLetterAsUsedAction = {
 	type: 'NEW_GAME',
-	payload: { letter: string }
+	payload: string
 }
 
 type Action = NewGameAction | MarkLetterAsUsedAction

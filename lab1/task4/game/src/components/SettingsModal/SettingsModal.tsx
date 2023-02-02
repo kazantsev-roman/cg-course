@@ -2,6 +2,8 @@ import styles from "./Settings.module.css"
 import reload from "../../assets/images/reload.png"
 import close from "../../assets/images/close.png"
 import { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import newGameAction from "../../store/actions/newGameAction";
 
 type SettingsModalProps = {
 	viewMode: 'gallows' | 'field of dreams',
@@ -11,6 +13,8 @@ type SettingsModalProps = {
 
 function SettingsModal({ viewMode, setViewMode, setViewModal }: SettingsModalProps)
 {
+	const dispatch = useDispatch()
+
 	function closeModal()
 	{
 		setViewModal(false)
@@ -18,6 +22,7 @@ function SettingsModal({ viewMode, setViewMode, setViewModal }: SettingsModalPro
 
 	function setNewGame()
 	{
+		dispatch(newGameAction())
 		closeModal()
 	}
 

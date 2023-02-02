@@ -20,8 +20,8 @@ function getInitialState(): GameState
 	return {
 		alphabet: newAlphabet,
 		question: question.question,
-		answer: question.answer,
-		numberOfAttempts: 0,
+		answer: question.answer.toUpperCase(),
+		numberOfAttempts: 10,
 		maxNumberOfAttempts: 10
 	}
 }

@@ -1,0 +1,27 @@
+.container
+{
+	display: flex;
+}
+
+.letter_container
+{
+	margin-left: 30px;
+	width: 20px;
+	height: 40px;
+}
+
+.letter
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 25px;
+	height: 37px;
+}
+
+.line
+{
+	width: 25px;
+	height: 3px;
+	background-color: #6e7dec;
+}

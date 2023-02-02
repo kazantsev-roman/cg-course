@@ -1,0 +1,23 @@
+.letter
+{
+	cursor: pointer;
+	margin-left: 10px;
+	font-size: 25px;
+	color: black;
+}
+
+.correct
+{
+	cursor: not-allowed;
+	margin-left: 10px;
+	font-size: 25px;
+	color: green;
+}
+
+.incorrect
+{
+	cursor: not-allowed;
+	margin-left: 10px;
+	font-size: 25px;
+	color: red;
+}
