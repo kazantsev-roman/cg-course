@@ -1,22 +1,19 @@
 import questions from "./russian/questions";
 import getRandomElementFromArray from "../../utils/getRandomElementFromArray";
 import alphabet from "./russian/alphabet";
+import GameState from "../types/GameState";
 
-function getInitialState()
+function getInitialState(): GameState
 {
 	let question = getRandomElementFromArray(questions)
-	question.answer.toUpperCase()
 
-	alphabet.forEach(letter => {
-		letter.toUpperCase()
-	})
-
-	const correctLetters = new Set(question.answer)
+	const correctLetters = new Set(question.answer.toUpperCase())
 	const newAlphabet = alphabet.map(letter => {
+		let letterUpperCase = letter.toUpperCase()
 		return {
-			letter: letter,
+			letter: letterUpperCase,
 			used: false,
-			correct: correctLetters.has(letter)
+			correct: correctLetters.has(letterUpperCase)
 		}
 	})
 
@@ -24,10 +21,11 @@ function getInitialState()
 		alphabet: newAlphabet,
 		question: question.question,
 		answer: question.answer,
-		numberOfAttempts: 0
+		numberOfAttempts: 0,
+		maxNumberOfAttempts: 10
 	}
 }
 
-const initialState = getInitialState()
+const initialState: GameState = getInitialState()
 
-export default initialState
+export { initialState, getInitialState }
