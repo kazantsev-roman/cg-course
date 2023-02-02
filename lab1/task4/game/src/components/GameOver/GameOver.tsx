@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import GameState from "../../store/types/GameState";
-import allCorrectLettersWasUsed from "../../utils/allCorrectLettersWasUsed";
+import isAllCorrectLettersWasUsed from "../../utils/isAllCorrectLettersWasUsed";
 import styles from "./GameOver.module.css";
 import GameWin from "./GameWin/GameWin";
 import GameLose from "./GameLose/GameLose";
@@ -17,7 +17,7 @@ function GameOver()
 
 	function isGameOver()
 	{
-		if (allCorrectLettersWasUsed(usedLetters, answer))
+		if (isAllCorrectLettersWasUsed(usedLetters, answer))
 		{
 			setGameOver('win')
 			return

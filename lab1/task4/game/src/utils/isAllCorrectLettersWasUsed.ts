@@ -1,4 +1,4 @@
-function allCorrectLettersWasUsed(usedLetters: Array<{letter: string, used: boolean, correct: boolean}>, answer: string)
+function isAllCorrectLettersWasUsed(usedLetters: Array<{letter: string, used: boolean, correct: boolean}>, answer: string)
 {
 	const letters = new Set(answer)
 
@@ -12,4 +12,4 @@ function allCorrectLettersWasUsed(usedLetters: Array<{letter: string, used: bool
 	return letters.size === 0
 }
 
-export default allCorrectLettersWasUsed
+export default isAllCorrectLettersWasUsed
