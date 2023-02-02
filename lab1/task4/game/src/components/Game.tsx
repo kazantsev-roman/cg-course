@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./Game.module.css"
 import Gallows from "./Gallows/Gallows";
 import FieldOfDreams from "./FieldOfDreams/FieldOfDreams";
 import SettingsModal from "./SettingsModal/SettingsModal";
@@ -6,7 +7,7 @@ import Settings from "./Settings/Settings";
 
 function Game()
 {
-	const [viewMode, setViewMode] = useState<'gallows' | 'field of dreams'>('gallows')
+	const [viewMode, setViewMode] = useState<'gallows' | 'field of dreams'>('field of dreams')
 	const [viewModal, setViewModal] = useState(false)
 
 	return (
@@ -18,7 +19,11 @@ function Game()
 					: <FieldOfDreams />
 			}
 			{
-				viewModal && <SettingsModal setViewMode={setViewMode} setViewModal={setViewModal} />
+				viewModal &&
+				<>
+					<div className={styles.shadow}></div>
+					<SettingsModal viewMode={viewMode} setViewMode={setViewMode} setViewModal={setViewModal} />
+				</>
 			}
 		</>
 	)
