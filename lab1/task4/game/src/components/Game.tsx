@@ -4,6 +4,7 @@ import Gallows from "./Gallows/Gallows";
 import FieldOfDreams from "./FieldOfDreams/FieldOfDreams";
 import SettingsModal from "./SettingsModal/SettingsModal";
 import Settings from "./Settings/Settings";
+import GameOver from "./GameOver/GameOver";
 
 function Game()
 {
@@ -25,6 +26,7 @@ function Game()
 					<SettingsModal viewMode={viewMode} setViewMode={setViewMode} setViewModal={setViewModal} />
 				</>
 			}
+			<GameOver />
 		</>
 	)
 }
