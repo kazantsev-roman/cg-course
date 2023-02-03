@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { GameState } from "../../store/types/GameState";
+import { GameState } from "../../types/GameState";
 import styles from "./Gallows.module.css"
 import Answer from "../common/Answer/Answer";
 import Letter from "../common/Letter/Letter";

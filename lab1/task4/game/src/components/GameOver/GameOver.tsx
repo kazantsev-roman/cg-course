@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { GameState } from "../../store/types/GameState";
+import { GameState } from "../../types/GameState";
 import isAllCorrectLettersWasUsed from "../../utils/isAllCorrectLettersWasUsed";
 import styles from "./GameOver.module.css";
 import GameWin from "./GameWin/GameWin";

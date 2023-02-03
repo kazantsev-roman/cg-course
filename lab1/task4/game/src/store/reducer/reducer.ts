@@ -1,7 +1,7 @@
-import { GameState, LetterData } from "../types/GameState";
-import { getInitialState, initialState } from "../initialState/initialState";
+import { GameState, LetterData } from "../../types/GameState";
+import { getInitialState, initialState } from "./initialState/initialState";
 import { MARK_LETTER_AS_USED, NEW_GAME } from "../constants/constants";
-import Action from "../types/ActionType";
+import Action from "../actions/actionType/ActionType";
 
 const reducer = (state: GameState = initialState , action: Action): GameState => {
 	switch(action.type)

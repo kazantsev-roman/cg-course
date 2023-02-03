@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { GameState } from "../../../store/types/GameState";
+import { GameState } from "../../../types/GameState";
 
 const ImageOfGallows = () =>
 {

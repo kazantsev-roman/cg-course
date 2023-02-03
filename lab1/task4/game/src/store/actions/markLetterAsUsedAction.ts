@@ -1,5 +1,5 @@
 import { MARK_LETTER_AS_USED } from "../constants/constants";
-import { LetterData } from "../types/GameState";
+import { LetterData } from "../../types/GameState";
 
 function markLetterAsUsed(letter: LetterData)
 {

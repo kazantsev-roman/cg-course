@@ -1,4 +1,4 @@
-import { NEW_GAME } from "../constants/constants";
+import { NEW_GAME } from "../../constants/constants";
 
 type NewGameAction = {
 	type: 'MARK_LETTER_AS_USED',
