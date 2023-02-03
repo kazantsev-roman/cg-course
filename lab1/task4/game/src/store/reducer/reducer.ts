@@ -19,7 +19,13 @@ const reducer = (state: GameState = initialState , action: Action): GameState =>
 				}
 				return letter
 			}),
-			usedLetters: [...state.usedLetters, {...action.payload as LetterData, used: true}],
+			usedLetters: [
+				...state.usedLetters,
+				{
+					...action.payload as LetterData,
+					used: true
+				}
+			],
 			numberOfAttempts: (action.payload as LetterData).correct ? state.numberOfAttempts : --state.numberOfAttempts
 		}
 	case NEW_GAME:
