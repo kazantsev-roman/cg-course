@@ -1,0 +1,35 @@
+.alphabet
+{
+	display: flex;
+	height: 30px;
+	margin-left: 20px;
+}
+
+.alphabet
+{
+	margin-top: 90px;
+	justify-content: center;
+}
+
+.alphabet > div
+{
+	font-size: 35px;
+	margin: 10px;
+}
+
+.question
+{
+	width: 1000px;
+	font-size: 15px;
+	margin: 0 20px 20px 30px;
+}
+
+.answer
+{
+	margin: 150px 20px 20px 0;
+}
+
+.container
+{
+	display: flex;
+}

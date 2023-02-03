@@ -1,11 +1,16 @@
 import { useSelector } from "react-redux";
 import { GameState } from "../../store/types/GameState";
-import Letter from "./Letter/Letter";
+import Letter from "../common/Letter/Letter";
 import styles from "./FieldOfDreams.module.css"
-import Answer from "./Answer/Answer";
+import Answer from "../common/Answer/Answer";
+import { useEffect } from "react";
 
 function FieldOfDreams()
 {
+	useEffect(() => {
+		document.title = 'Field of Dreams'
+	}, [])
+
 	const question = useSelector((state: GameState) => state.question)
 	const usedLetters = useSelector((state: GameState) => state.usedLetters)
 	const numberOfAttempts = useSelector((state: GameState) => state.numberOfAttempts)
