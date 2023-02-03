@@ -1,6 +1,6 @@
 import styles from "./Letter.module.css"
 import { useDispatch } from "react-redux";
-import markLetterAsUsedAction from "../../../store/actions/markLetterAsUsedAction";
+import markLetterAsUsedAction from "../../../../store/actions/markLetterAsUsedAction";
 
 type LetterProps = {
 	letter: string,

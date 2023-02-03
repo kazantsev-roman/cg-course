@@ -1,7 +1,5 @@
 import styles from "./GameWin.module.css";
-import reload from "../../../assets/images/reload.png";
-import newGameAction from "../../../store/actions/newGameAction";
-import { useDispatch } from "react-redux";
+import ButtonNewGame from "../../common/ButtonNewgame/ButtonNewGame";
 
 type GameWinProps = {
 	setGameOver: (mode: 'win' | 'lose' | 'unknown') => void
@@ -9,14 +7,6 @@ type GameWinProps = {
 
 function GameWin({ setGameOver }: GameWinProps)
 {
-	const dispatch = useDispatch()
-
-	function setNewGame()
-	{
-		dispatch(newGameAction())
-		setGameOver('unknown')
-	}
-
 	return (
 		<div className={styles.container}>
 			<div className={styles.pyro}>
@@ -27,10 +17,7 @@ function GameWin({ setGameOver }: GameWinProps)
 				<h1 className={styles.header}>Поздравляем!</h1>
 				<p>Это было слишком легко</p>
 				<p>Хотите еще сыграть?</p>
-				<div className={styles.button_container} onClick={setNewGame}>
-					<img className={styles.image} src={reload} alt={"reload"} />
-					<p>Новая игра</p>
-				</div>
+				<ButtonNewGame callback={() => setGameOver('unknown')} />
 			</div>
 		</div>
 	)

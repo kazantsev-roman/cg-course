@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
 import { GameState } from "../../types/GameState";
-import Letter from "../common/Letter/Letter";
 import styles from "./FieldOfDreams.module.css"
 import Answer from "../common/Answer/Answer";
 import { useEffect } from "react";
+import Letters from "../common/Letters/Letters";
 
 function FieldOfDreams()
 {
@@ -23,29 +23,11 @@ function FieldOfDreams()
 			<Answer />
 			<div className={styles.header}>Использованные буквы:</div>
 			<div className={styles.used}>
-				{
-					usedLetters.map(letter => {
-						return <Letter
-							key={letter.letter}
-							letter={letter.letter}
-							used={letter.used}
-							correct={letter.correct}
-						/>
-					})
-				}
+				<Letters array={usedLetters} />
 			</div>
 			<div className={styles.header}>Осталось попыток: {numberOfAttempts}</div>
 			<div className={styles.alphabet}>
-				{
-					alphabet.map(letter => {
-						return <Letter
-							key={letter.letter}
-							letter={letter.letter}
-							used={letter.used}
-							correct={letter.correct}
-						/>
-					})
-				}
+				<Letters array={alphabet} />
 			</div>
 		</>
 	)

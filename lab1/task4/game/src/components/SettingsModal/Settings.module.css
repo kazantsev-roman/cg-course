@@ -40,26 +40,6 @@
 	height: 20px;
 }
 
-.button_container
-{
-	display: flex;
-	width: 100%;
-	height: 50px;
-}
-
-.button_container:hover
-{
-	cursor: pointer;
-	background-color: #5a6bea;
-}
-
-.button_container > p
-{
-	font-size: 20px;
-	line-height: 10px;
-	color: #ececec;
-}
-
 .mode_container
 {
 	margin-top: 20px;

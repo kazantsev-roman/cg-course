@@ -1,9 +1,8 @@
 import styles from "./Settings.module.css"
-import reload from "../../assets/images/reload.png"
 import close from "../../assets/images/close.png"
 import { ChangeEvent } from "react";
-import { useDispatch } from "react-redux";
-import newGameAction from "../../store/actions/newGameAction";
+import ButtonNewGame from "../common/ButtonNewgame/ButtonNewGame";
+import Radio from "./Radio/Radio";
 
 type SettingsModalProps = {
 	viewMode: 'gallows' | 'field of dreams',
@@ -13,18 +12,7 @@ type SettingsModalProps = {
 
 function SettingsModal({ viewMode, setViewMode, setViewModal }: SettingsModalProps)
 {
-	const dispatch = useDispatch()
-
-	function closeModal()
-	{
-		setViewModal(false)
-	}
-
-	function setNewGame()
-	{
-		dispatch(newGameAction())
-		closeModal()
-	}
+	const closeModal = () => setViewModal(false)
 
 	function setNewMode(event: ChangeEvent<HTMLInputElement>)
 	{
@@ -41,30 +29,11 @@ function SettingsModal({ viewMode, setViewMode, setViewModal }: SettingsModalPro
 				<h1 className={styles.header}>Настройки</h1>
 				<img className={styles.image} src={close} alt={"close"} onClick={closeModal} />
 			</div>
-			<div className={styles.button_container} onClick={setNewGame}>
-				<img className={styles.image} src={reload} alt={"reload"} />
-				<p>Новая игра</p>
-			</div>
+			<ButtonNewGame callback={closeModal} />
 			<div className={styles.mode_container}>
 				<p>Режим визулизации</p>
-				<label>
-					<input
-						type="radio"
-						value={"field of dreams"}
-						checked={viewMode === "field of dreams"}
-						onChange={setNewMode}
-					/>
-					<div>Поле чудес</div>
-				</label>
-				<label>
-					<input
-						type="radio"
-						value={"gallows"}
-						checked={viewMode === "gallows"}
-						onChange={setNewMode}
-					/>
-					<div>Виселица</div>
-				</label>
+				<Radio title={"Поле чудес"} value={"field of dreams"} checked={viewMode === "field of dreams"} onChange={setNewMode} />
+				<Radio title={"Виселица"} value={"gallows"} checked={viewMode === "gallows"} onChange={setNewMode} />
 			</div>
 		</div>
 	)

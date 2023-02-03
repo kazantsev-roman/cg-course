@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { GameState } from "../../types/GameState";
 import styles from "./Gallows.module.css"
 import Answer from "../common/Answer/Answer";
-import Letter from "../common/Letter/Letter";
 import ImageOfGallows from "./ImageOfGallows/ImageOfGallows";
 import { useEffect } from "react";
+import Letters from "../common/Letters/Letters";
 
 function Gallows()
 {
@@ -28,16 +28,7 @@ function Gallows()
 				</div>
 			</div>
 			<div className={styles.alphabet}>
-				{
-					alphabet.map(letter => {
-						return <Letter
-							key={letter.letter}
-							letter={letter.letter}
-							used={letter.used}
-							correct={letter.correct}
-						/>
-					})
-				}
+				<Letters array={alphabet} />
 			</div>
 		</>
 	)
