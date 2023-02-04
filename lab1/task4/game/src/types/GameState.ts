@@ -1,11 +1,6 @@
-export type LetterData = {
-	letter: string,
-	used: boolean,
-	correct: boolean
-}
+import LetterData from "./LetterData";
 
-export type GameState = {
-
+type GameState = {
 	alphabet: Array<LetterData>,
 	question: string,
 	answer: string,
@@ -13,3 +8,5 @@ export type GameState = {
 	numberOfAttempts: number,
 	maxNumberOfAttempts: number
 }
+
+export default GameState

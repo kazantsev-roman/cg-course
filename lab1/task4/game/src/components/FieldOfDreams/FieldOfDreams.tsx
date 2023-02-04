@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { GameState } from "../../types/GameState";
+import GameState  from "../../types/GameState";
 import styles from "./FieldOfDreams.module.css"
 import Answer from "../common/Answer/Answer";
 import { useEffect } from "react";

@@ -1,5 +1,5 @@
 import { NEW_GAME } from "../constants/constants";
-import { LetterData } from "../../types/GameState";
+import LetterData  from "../../types/LetterData";
 
 function newGame()
 {

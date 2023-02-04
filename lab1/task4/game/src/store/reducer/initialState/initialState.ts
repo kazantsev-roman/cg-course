@@ -1,7 +1,8 @@
 import questions from "./russian/questions";
 import getRandomElementFromArray from "../../../utils/getRandomElementFromArray";
 import alphabet from "./russian/alphabet";
-import { GameState, LetterData } from "../../../types/GameState";
+import GameState from "../../../types/GameState";
+import LetterData from "../../../types/LetterData";
 
 function getInitialState(): GameState
 {

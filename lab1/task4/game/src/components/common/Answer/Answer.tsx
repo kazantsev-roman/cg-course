@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import styles from "./Answer.module.css"
-import { GameState } from "../../../types/GameState";
+import GameState from "../../../types/GameState";
 import { v4 as uuid } from 'uuid'
 
 function Answer()
