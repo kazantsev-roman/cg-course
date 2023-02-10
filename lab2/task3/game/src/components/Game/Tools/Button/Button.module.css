@@ -1,0 +1,30 @@
+.wrap
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 230px;
+	height: 70px;
+	background-color: #e5e3cb;
+	border-radius: 10px;
+}
+
+.wrap:hover
+{
+	cursor: pointer;
+	background-color: #d0c786;
+	transition: 0.3s;
+}
+
+.image
+{
+	width: 50px;
+	height: 50px;
+	margin-left: 30px;
+}
+
+.text
+{
+	width: 30px;
+	margin-right: 70px;
+}

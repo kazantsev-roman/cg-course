@@ -1,0 +1,11 @@
+.wrap
+{
+	display: inline-block;
+	width: 500px;
+	height: 800px;
+}
+
+.button_wrap
+{
+	margin: 20px;
+}

@@ -1,0 +1,10 @@
+.wrap
+{
+	display: flex;
+	justify-content: center;
+}
+
+.field_wrap, .tools_wrap
+{
+	padding: 45px;
+}
