@@ -1,0 +1,17 @@
+.wrap
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #252525;
+	border: 1px #3a3a3a solid;
+	box-shadow: inset -6px -6px 6px 0 rgba(227, 227, 227, 0.5), inset 5px 5px 5px 0 rgba(79, 79, 79, 0.5);
+}
+
+.ball
+{
+	width: 70%;
+	height: 70%;
+	border-radius: 50%;
+	box-shadow: inset -6px -6px 5px 0 rgba(56, 56, 56, 0.5), inset 6px 6px 5px 0 rgba(218, 218, 218, 0.5);
+}

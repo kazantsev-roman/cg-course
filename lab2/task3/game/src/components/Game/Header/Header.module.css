@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200&family=Rajdhani:wght@300&display=swap');
+
+.wrap
+{
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 78%;
+	height: 50px;
+	margin: 10px 5px 5px;
+}
+
+.colors
+{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	width: 330px;
+}
+
+.colors > p
+{
+	font-size: 27px;
+	color: #FFF;
+	text-shadow: 3px 2px 0 rgba(0,0,0,0.2);
+	font-family: 'Jost', sans-serif;
+	font-weight: bold;
+}

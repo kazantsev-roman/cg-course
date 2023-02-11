@@ -1,0 +1,16 @@
+.wrap
+{
+	display: flex;
+	align-items: center;
+}
+
+.filed
+{
+	width: 720px;
+	height: 720px;
+}
+
+.row
+{
+	display: flex;
+}
