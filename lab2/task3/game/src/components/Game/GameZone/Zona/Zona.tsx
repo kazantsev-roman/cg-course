@@ -22,7 +22,7 @@ function Zona()
 					row.push(<Cell width={80} height={80} color={"#a8a8a8"} ball={"green"}/>)
 					continue
 				}
-				if (i === 1 && j === 3)
+				if (i === 2 && j === 2)
 				{
 					row.push(<Cell width={80} height={80} color={"#a8a8a8"} ball={"yellow"}/>)
 					continue
