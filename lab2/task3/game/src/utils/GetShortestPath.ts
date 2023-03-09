@@ -37,6 +37,7 @@ function RestorePath(arrayWithBorders: Array<Array<number>>, startPosition: Poin
 	if (arrayWithBorders[endPosition.y + 1][endPosition.x + 1] !== 0)
 	{
 		let current = { x: endPosition.x + 1, y: endPosition.y + 1 }
+		path.unshift(current)
 		do
 		{
 			let value = arrayWithBorders[current.y][current.x]
@@ -66,7 +67,9 @@ function RestorePath(arrayWithBorders: Array<Array<number>>, startPosition: Poin
 		} while(!(current.x === startPosition.x + 1 && current.y === startPosition.y + 1))
 	}
 
-	return path
+	return path.map(value => {
+		return {x: value.x - 1, y: value.y - 1}
+	})
 }
 
 function GetShortestPath(array: Array<Array<Ball | null>>, startPosition: Point, endPosition: Point): Array<Point>
