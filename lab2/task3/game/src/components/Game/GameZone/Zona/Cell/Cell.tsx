@@ -1,6 +1,7 @@
 import styles from "./Cell.module.css"
-import steps from "../../../../../assets/images/steps.png"
 import { useState } from "react";
+import { Ball } from "../Ball/Ball";
+import { Step } from "../Step/Step";
 
 type CellProps = {
 	width: number,
@@ -14,15 +15,9 @@ type CellProps = {
 function Cell({ width, height, color, ball, step }: CellProps)
 {
 	const [clickedCell, setClickedCell] = useState(false)
-	const [clickedBall, setClickedBall] = useState(false)
 
-	const changeStyle = () => {
+	const CellHandleClick = () => {
 		!ball && setClickedCell(true)
-		ball && setClickedBall(true)
-		if (clickedCell)
-		{
-			setClickedBall(false)
-		}
 		setTimeout(function(){
 			setClickedCell(false)
 		}, 1700);
@@ -32,10 +27,10 @@ function Cell({ width, height, color, ball, step }: CellProps)
 		<div
 			className={clickedCell && !ball && !step ? styles.clicked :styles.wrap}
 			style={{width: `${width}px`, height: `${height}px`, backgroundColor: color}}
-			onClick={changeStyle}
+			onClick={CellHandleClick}
 		>
-			{ball ? <div style={{backgroundColor: ball}} className={clickedBall && ball ? styles.clicked_ball : styles.ball}></div> : <></>}
-			{step ? <div style={{width: "100%", height: "100%", background: `no-repeat center center url(${steps})`}}></div> : <></>}
+			{ball && <Ball color={ball} />}
+			{step && <Step />}
 		</div>
 	)
 }
