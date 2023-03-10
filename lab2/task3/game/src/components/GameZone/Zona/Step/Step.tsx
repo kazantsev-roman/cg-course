@@ -1,4 +1,4 @@
-import steps from "../../../../../assets/images/steps.png";
+import steps from "../../../../assets/images/steps.png";
 
 export function Step()
 {

@@ -1,8 +1,8 @@
 import styles from "./Player.module.css";
-import king from "../../../../assets/images/king.png";
-import player from "../../../../assets/images/player.png";
-import platform from "../../../../assets/images/platform.png";
-import degree from "../../../../assets/images/degree.png";
+import king from "../../../assets/images/king.png";
+import player from "../../../assets/images/player.png";
+import platform from "../../../assets/images/platform.png";
+import degree from "../../../assets/images/degree.png";
 
 type PlayerProps = {
 	type: "player" | "king",

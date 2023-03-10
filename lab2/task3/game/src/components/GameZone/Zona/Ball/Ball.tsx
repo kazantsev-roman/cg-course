@@ -1,6 +1,6 @@
 import styles from "../Cell/Cell.module.css";
 import { useState } from "react";
-import jump_sound from "../../../../../assets/sounds/ball_jump.wav";
+import jump_sound from "../../../../assets/sounds/ball_jump.wav";
 
 type BallProps = {
 	color: string
