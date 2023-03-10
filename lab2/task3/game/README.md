@@ -15,4 +15,4 @@
 
 ---
 ### Диаграмма игры
-[Диаграмма тут](https://app.diagrams.net/#G1t45UocMneTO_neNn6TWzc4YZMdLRkp-_)
+[Диаграмма тут](https://drive.google.com/file/d/1t45UocMneTO_neNn6TWzc4YZMdLRkp-_/view?usp=sharing)
