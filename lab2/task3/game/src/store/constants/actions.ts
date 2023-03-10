@@ -1,3 +1,4 @@
 const BLOCK_PLAY = "BLOCK_PLAY"
+const ADD_BALL = "ADD_BALL"
 
-export { BLOCK_PLAY }
+export { BLOCK_PLAY, ADD_BALL }

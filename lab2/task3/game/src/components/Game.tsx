@@ -6,8 +6,8 @@ function Game()
 {
 	return (
 		<div className={styles.wrap}>
-			<Header />
-			<GameZone />
+			<Header/>
+			<GameZone/>
 		</div>
 	)
 }

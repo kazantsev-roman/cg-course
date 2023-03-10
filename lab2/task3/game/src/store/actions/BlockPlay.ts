@@ -7,3 +7,5 @@ function blockPlay()
 		payload: {}
 	}
 }
+
+export default blockPlay

@@ -1,59 +1,45 @@
 import styles from "./Zona.module.css"
+import { useSelector } from "react-redux"
+import State from "../../../store/types/State";
 import Cell from "./Cell/Cell";
+import { useEffect } from "react";
+import addBall from "../../../store/actions/AddBall";
+import { useDispatch } from "react-redux";
+import GetFreeCell from "../../../utils/GetFreeCell";
+import GetColor from "../../../utils/GetColor";
 
 function Zona()
 {
-	function fillField()
-	{
-		let field: Array<Array<JSX.Element>> = []
+	const dispatch = useDispatch()
+	const field = useSelector((state: State) => state.field)
 
-		for(let i = 0; i < 9; ++i)
-		{
-			let row = []
-			for(let j = 0; j < 9; ++j)
-			{
-				if (i === 3 && j === 2)
-				{
-					row.push(<Cell width={80} height={80} color={"#a8a8a8"} ball={"blue"}/>)
-					continue
-				}
-				if (i === 5 && j === 5)
-				{
-					row.push(<Cell width={80} height={80} color={"#a8a8a8"} ball={"green"}/>)
-					continue
-				}
-				if (i === 2 && j === 2)
-				{
-					row.push(<Cell width={80} height={80} color={"#a8a8a8"} ball={"yellow"}/>)
-					continue
-				}
-				if (i === 2 && j === 3)
-				{
-					row.push(<Cell width={80} height={80} color={"#a8a8a8"} step={true}/>)
-					continue
-				}
-				if (i === 3 && j === 3)
-				{
-					row.push(<Cell width={80} height={80} color={"#a8a8a8"} step={true}/>)
-					continue
-				}
-				row.push(<Cell width={80} height={80} color={"#a8a8a8"}/>)
-			}
-			field.push(row)
-		}
+	useEffect(() => {
+		const timeOfAddition = 500
+		const numberOfBalls = 5
 
-		return field
-	}
+		const addBalls = setInterval( () => {
+			const position = GetFreeCell(field)
+			const color = GetColor()
+
+			dispatch(addBall({position, color}))
+		}, timeOfAddition)
+
+		setTimeout(() => {
+			clearInterval(addBalls)
+		}, timeOfAddition * numberOfBalls)
+	}, [])
 
 	return (
 		<div className={styles.wrap}>
 			<div className={styles.filed}>
 				{
-					fillField().map(row => {
-						return <div className={styles.row}>
-							{row.map(cell => {
-								return cell
-							})}
+					field.map((row, index) => {
+						return <div key={index} className={styles.row}>
+							{
+								row.map((cell, index) => {
+									return <Cell key={index} width={80} height={80} color={"#a8a8a8"} ball={cell?.color}/>
+								})
+							}
 						</div>
 					})
 				}
