@@ -37,39 +37,37 @@ function RestorePath(arrayWithBorders: Array<Array<number>>, startPosition: Poin
 	if (arrayWithBorders[endPosition.y + 1][endPosition.x + 1] !== 0)
 	{
 		let current = { x: endPosition.x + 1, y: endPosition.y + 1 }
-		path.unshift(current)
+		path.unshift(endPosition)
 		do
 		{
 			let value = arrayWithBorders[current.y][current.x]
 			if (arrayWithBorders[current.y][current.x + 1] === value - 1)
 			{
-				path.unshift({x: current.x + 1, y: current.y})
+				path.unshift({x: current.x, y: current.y - 1})
 				current = {x: current.x + 1, y: current.y}
 				continue
 			}
 			if (arrayWithBorders[current.y][current.x - 1] === value - 1)
 			{
-				path.unshift({x: current.x - 1, y: current.y})
+				path.unshift({x: current.x - 2, y: current.y - 1})
 				current = {x: current.x - 1, y: current.y}
 				continue
 			}
 			if (arrayWithBorders[current.y + 1][current.x] === value - 1)
 			{
-				path.unshift({x: current.x, y: current.y + 1})
+				path.unshift({x: current.x - 1, y: current.y})
 				current = {x: current.x, y: current.y + 1}
 				continue
 			}
 			if (arrayWithBorders[current.y - 1][current.x] === value - 1)
 			{
-				path.unshift({x: current.x, y: current.y - 1})
+				path.unshift({x: current.x - 1, y: current.y - 2})
 				current = {x: current.x, y: current.y - 1}
 			}
 		} while(!(current.x === startPosition.x + 1 && current.y === startPosition.y + 1))
 	}
 
-	return path.map(value => {
-		return {x: value.x - 1, y: value.y - 1}
-	})
+	return path
 }
 
 function GetShortestPath(array: Array<Array<Ball | null>>, startPosition: Point, endPosition: Point): Array<Point>
