@@ -1,7 +1,7 @@
 import State from "../types/State";
 import { GetInitialState } from "./initialState/initialState";
 import Action from "../actions/Action";
-import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, UNLOCK_PLAY } from "../constants/actions";
+import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, SET_SELECTED_BALL, UNLOCK_PLAY } from "../constants/actions";
 import GetColor from "../../utils/GetColor";
 
 const initialState = GetInitialState()
@@ -36,6 +36,11 @@ const reducer = (state: State =  initialState, action: Action) => {
 		return {
 			...state,
 			canPlay: true
+		}
+	case SET_SELECTED_BALL:
+		return {
+			...state,
+			selectedBall: action.payload
 		}
 	default:
 		return state

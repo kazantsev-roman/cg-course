@@ -1,39 +1,32 @@
 import styles from "../Cell/Cell.module.css";
-import { useState } from "react";
-import jump_sound from "../../../../assets/sounds/ball_jump.wav";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import State from "../../../../store/types/State";
+import setSelectedBall from "../../../../store/actions/SetSelectedBall";
+import BallType from "../../../../types/Ball"
+import BallsEqual from "../../../../utils/BallsEqual";
 
 type BallProps = {
-	color: string,
+	ball: BallType,
 	viewOnly?: boolean
 }
 
-export function Ball({ color, viewOnly }: BallProps)
+export function Ball({ ball, viewOnly }: BallProps)
 {
+	const dispatch = useDispatch()
 	const canPlay = useSelector((state: State) => state.canPlay)
-	const audio = new Audio(jump_sound)
-	const [clickedBall, setClickedBall] = useState(false)
+	const selectedBall = useSelector((state: State) => state.selectedBall)
 
 	const BallHandleClick = () => {
 		if (canPlay && !viewOnly)
 		{
-			if (!clickedBall)
-			{
-				audio.play()
-				const ball_jump = setInterval(() => {
-					audio.play()
-				}, 1000)
-			}
-			setClickedBall(true)
+			dispatch(setSelectedBall(ball))
 		}
 	}
 
-
 	return (
 		<div
-			className={clickedBall ? styles.clicked_ball : styles.ball}
-			style={{backgroundColor: color}}
+			className={selectedBall && BallsEqual(ball, selectedBall) ? styles.clicked_ball : styles.ball}
+			style={{backgroundColor: ball.color}}
 			onClick={BallHandleClick}
 		>
 		</div>

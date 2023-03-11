@@ -1,6 +1,7 @@
 import styles from "./Cell.module.css"
 import { useState } from "react";
-import { Ball } from "../Ball/Ball";
+import { Ball as BallComponent } from "../Ball/Ball";
+import Ball from "../../../../types/Ball"
 import { Step } from "../Step/Step";
 import { useSelector } from "react-redux";
 import State from "../../../../store/types/State";
@@ -9,7 +10,7 @@ type CellProps = {
 	width: number,
 	height: number,
 	color: string,
-	ball?: string | null,
+	ball?: Ball | null,
 	step?: boolean,
 	viewOnly?: boolean
 }
@@ -37,7 +38,7 @@ function Cell({ width, height, color, ball, step, viewOnly = false }: CellProps)
 			style={{width: `${width}px`, height: `${height}px`, backgroundColor: color, cursor: canPlay ? "pointer" : "none"}}
 			onClick={CellHandleClick}
 		>
-			{ball && <Ball color={ball} viewOnly={viewOnly} />}
+			{ball && <BallComponent ball={ball} viewOnly={viewOnly} />}
 			{step && <Step />}
 		</div>
 	)

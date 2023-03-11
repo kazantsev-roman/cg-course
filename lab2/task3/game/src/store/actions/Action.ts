@@ -1,4 +1,5 @@
 import Ball from "../../types/Ball";
+import { SET_SELECTED_BALL } from "../constants/actions";
 
 type blockPlay = {
 	type: "BLOCK_PLAY",
@@ -19,7 +20,11 @@ type unlockPlay = {
 	type: "UNLOCK_PLAY",
 	payload: {}
 }
+type setSelectedBall = {
+	type: "SET_SELECTED_BALL",
+	payload: Ball
+}
 
-type Action = blockPlay | addBall | addNextBalls | unlockPlay
+type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall
 
 export default Action

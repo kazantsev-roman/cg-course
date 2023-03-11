@@ -44,7 +44,7 @@ function Zona()
 						return <div key={index} className={styles.row}>
 							{
 								row.map((cell, index) => {
-									return <Cell key={index} width={80} height={80} color={"#a8a8a8"} ball={cell?.color}/>
+									return <Cell key={index} width={80} height={80} color={"#a8a8a8"} ball={cell}/>
 								})
 							}
 						</div>
