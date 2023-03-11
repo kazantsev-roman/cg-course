@@ -14,7 +14,7 @@ function Zona()
 	const field = useSelector((state: State) => state.field)
 
 	useEffect(() => {
-		const timeOfAddition = 500
+		const timeOfAddition = 200
 		const numberOfBalls = 5
 
 		const addBalls = setInterval( () => {

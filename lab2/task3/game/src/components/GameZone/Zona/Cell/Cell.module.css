@@ -27,7 +27,7 @@
 	height: 70%;
 	border-radius: 50%;
 	box-shadow: inset -6px -6px 5px 0 rgba(56, 56, 56, 0.5), inset 6px 6px 5px 0 rgba(218, 218, 218, 0.5);
-	-webkit-animation: create 0.5s forwards;
+	-webkit-animation: create 0.3s forwards;
 }
 
 @keyframes create {
