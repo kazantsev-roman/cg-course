@@ -4,7 +4,7 @@ import Point from "../../types/Point";
 
 type State = {
 	canPlay: boolean,
-	nextBalls: Array<Ball>,
+	nextBalls: Array<string | null>,
 	field: Array<Array<Ball | null>>,
 	shortedPath: Array<Move>,
 	selectedBall: Ball | null,

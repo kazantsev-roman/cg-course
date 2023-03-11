@@ -22,7 +22,7 @@ export function GetInitialState(): State
 {
 	return {
 		canPlay: false,
-		nextBalls: [],
+		nextBalls: [null, null, null],
 		field: fillField(),
 		shortedPath: [],
 		selectedBall: null,

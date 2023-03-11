@@ -7,6 +7,7 @@ import addBall from "../../../store/actions/AddBall";
 import { useDispatch } from "react-redux";
 import GetFreeCell from "../../../utils/GetFreeCell";
 import GetColor from "../../../utils/GetColor";
+import addNextBalls from "../../../store/actions/AddNextBalls";
 
 function Zona()
 {
@@ -27,6 +28,10 @@ function Zona()
 		setTimeout(() => {
 			clearInterval(addBalls)
 		}, timeOfAddition * numberOfBalls)
+
+		setTimeout(() => {
+			dispatch(addNextBalls())
+		}, timeOfAddition * numberOfBalls + 500)
 	}, [])
 
 	return (

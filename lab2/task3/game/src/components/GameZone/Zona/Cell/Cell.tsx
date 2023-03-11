@@ -7,7 +7,7 @@ type CellProps = {
 	width: number,
 	height: number,
 	color: string,
-	ball?: string,
+	ball?: string | null,
 	step?: boolean
 }
 
