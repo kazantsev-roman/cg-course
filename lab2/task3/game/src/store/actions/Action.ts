@@ -15,6 +15,11 @@ type addNextBalls = {
 	payload: {}
 }
 
-type Action = blockPlay | addBall | addNextBalls
+type unlockPlay = {
+	type: "UNLOCK_PLAY",
+	payload: {}
+}
+
+type Action = blockPlay | addBall | addNextBalls | unlockPlay
 
 export default Action
