@@ -1,12 +1,12 @@
-import State from "../types/State";
-import { GetInitialState } from "./initialState/initialState";
-import Action from "../types/Action";
-import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, MOVE_BALL, SET_SELECTED_BALL, UNLOCK_PLAY } from "../constants/actions";
-import GetColor from "../../utils/GetColor";
+import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, MOVE_BALL, SET_SELECTED_BALL, UNLOCK_PLAY } from "../constants/actions"
+import { GetInitialState } from "./initialState/initialState"
+import State from "../types/State"
+import Action from "../types/Action"
+import GetColor from "../../utils/GetColor"
 
 const initialState = GetInitialState()
 
-const reducer = (state: State =  initialState, action: Action): State => {
+const reducer = (state: State = initialState, action: Action): State => {
 	switch(action.type)
 	{
 	case BLOCK_PLAY:
@@ -15,9 +15,9 @@ const reducer = (state: State =  initialState, action: Action): State => {
 			canPlay: false
 		}
 	case ADD_BALL:
-		const position = action.payload.position
+		const position = action.ball.position
 		const newFiled = [...state.field]
-		newFiled[position.y][position.x] = action.payload
+		newFiled[position.y][position.x] = action.ball
 
 		return {
 			...state,
@@ -40,7 +40,7 @@ const reducer = (state: State =  initialState, action: Action): State => {
 	case SET_SELECTED_BALL:
 		return {
 			...state,
-			selectedBall: action.payload
+			selectedBall: action.ball
 		}
 	case MOVE_BALL:
 		if (state.selectedBall === null)
@@ -48,7 +48,7 @@ const reducer = (state: State =  initialState, action: Action): State => {
 			return state
 		}
 
-		const moves = action.payload.moves
+		const moves = action.moves
 
 		if (moves.length === 0)
 		{
@@ -58,7 +58,7 @@ const reducer = (state: State =  initialState, action: Action): State => {
 			}
 		}
 
-		const toPosition = action.payload.to
+		const toPosition = action.toPoint
 		const fromPosition = state.selectedBall.position
 
 		const filed = [...state.field]

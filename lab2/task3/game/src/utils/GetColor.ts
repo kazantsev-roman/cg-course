@@ -1,4 +1,4 @@
-import Colors from "../store/constants/colors";
+import Colors from "../store/constants/colors"
 
 function GetColor(): string
 {
@@ -24,12 +24,8 @@ function GetColor(): string
 	{
 		return Colors.Green
 	}
-	if (randomIndex === 5)
-	{
-		return Colors.Yellow
-	}
 
-	return ""
+	return Colors.Yellow
 }
 
 export default GetColor

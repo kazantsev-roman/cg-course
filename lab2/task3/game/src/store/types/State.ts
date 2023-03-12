@@ -1,5 +1,5 @@
-import Ball from "../../types/Ball";
-import Move from "../../types/Move";
+import Ball from "../../types/Ball"
+import Move from "../../types/Move"
 
 type State = {
 	canPlay: boolean,

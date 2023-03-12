@@ -4,35 +4,30 @@ import Point from "../../types/Point";
 import Move from "../../types/Move";
 
 type blockPlay = {
-	type: "BLOCK_PLAY",
-	payload: {}
+	type: "BLOCK_PLAY"
 }
 
 type addBall = {
 	type: "ADD_BALL",
-	payload: Ball
+	ball: Ball
 }
 
 type addNextBalls = {
-	type: "ADD_NEXT_BALLS",
-	payload: {}
+	type: "ADD_NEXT_BALLS"
 }
 
 type unlockPlay = {
-	type: "UNLOCK_PLAY",
-	payload: {}
+	type: "UNLOCK_PLAY"
 }
 type setSelectedBall = {
 	type: "SET_SELECTED_BALL",
-	payload: Ball
+	ball: Ball | null
 }
 
 type MoveBall = {
 	type: "MOVE_BALL",
-	payload: {
-		to: Point,
-		moves: Array<Move>
-	}
+	toPoint: Point,
+	moves: Array<Move>
 }
 
 type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall

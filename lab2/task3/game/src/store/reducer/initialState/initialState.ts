@@ -1,5 +1,5 @@
-import State from "../../types/State";
-import Ball from "../../../types/Ball";
+import State from "../../types/State"
+import Ball from "../../../types/Ball"
 
 function fillField(): Array<Array<Ball | null>>
 {

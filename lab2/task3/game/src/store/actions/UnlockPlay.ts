@@ -1,10 +1,9 @@
-import { UNLOCK_PLAY } from "../constants/actions";
+import { UNLOCK_PLAY } from "../constants/actions"
 
 function unlockPlay()
 {
 	return {
-		type: UNLOCK_PLAY,
-		payload: {}
+		type: UNLOCK_PLAY
 	}
 }
 

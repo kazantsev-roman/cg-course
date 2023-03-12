@@ -1,6 +1,6 @@
-import Point from "../types/Point";
-import Move from "../types/Move";
-import Direction from "../types/Direction";
+import Direction from "../types/Direction"
+import Point from "../types/Point"
+import Move from "../types/Move"
 
 function GetMoves(array: Array<Point>): Array<Move>
 {

@@ -1,0 +1,19 @@
+.wrap
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px #3a3a3a solid;
+	box-shadow: inset -6px -6px 6px 0 rgba(227, 227, 227, 0.5), inset 5px 5px 5px 0 rgba(79, 79, 79, 0.5);
+	background-color: #a8a8a8;
+}
+
+.clicked
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px #3a3a3a solid;
+	box-shadow: inset -8px -8px 8px 0 rgba(227, 227, 227, 0.5), inset 7px 7px 7px 0 rgba(79, 79, 79, 0.5);
+	background-color: #a8a8a8;
+}

@@ -1,9 +1,9 @@
-import styles from "../Cell/Cell.module.css";
-import { useDispatch, useSelector } from "react-redux";
-import State from "../../../../store/types/State";
-import setSelectedBall from "../../../../store/actions/SetSelectedBall";
+import styles from "./Ball.module.css"
+import { useDispatch, useSelector } from "react-redux"
+import State from "../../../../store/types/State"
+import setSelectedBall from "../../../../store/actions/SetSelectedBall"
+import BallsEqual from "../../../../utils/BallsEqual"
 import BallType from "../../../../types/Ball"
-import BallsEqual from "../../../../utils/BallsEqual";
 
 type BallProps = {
 	ball: BallType,

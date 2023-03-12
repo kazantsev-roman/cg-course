@@ -1,4 +1,4 @@
-import Ball from "../types/Ball";
+import Ball from "../types/Ball"
 
 function BallsEqual(ball1: Ball, ball2: Ball): boolean
 {

@@ -1,13 +1,13 @@
 import styles from "./Game.module.css"
-import GameZone from "./GameZone/GameZone"
 import Header from "./Header/Header"
+import Zona from "./Zona/Zona"
 
 function Game()
 {
 	return (
 		<div className={styles.wrap}>
 			<Header/>
-			<GameZone/>
+			<Zona/>
 		</div>
 	)
 }

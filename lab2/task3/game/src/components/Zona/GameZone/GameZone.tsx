@@ -1,16 +1,15 @@
-import styles from "./Zona.module.css"
-import { useSelector } from "react-redux"
-import State from "../../../store/types/State";
-import Cell from "./Cell/Cell";
-import { useEffect } from "react";
-import addBall from "../../../store/actions/AddBall";
-import { useDispatch } from "react-redux";
-import GetFreeCell from "../../../utils/GetFreeCell";
-import GetColor from "../../../utils/GetColor";
-import addNextBalls from "../../../store/actions/AddNextBalls";
-import unlockPlay from "../../../store/actions/UnlockPlay";
+import styles from "./GameZone.module.css"
+import { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
+import Cell from "./Cell/Cell"
+import State from "../../../store/types/State"
+import addNextBalls from "../../../store/actions/AddNextBalls"
+import unlockPlay from "../../../store/actions/UnlockPlay"
+import addBall from "../../../store/actions/AddBall"
+import GetFreeCell from "../../../utils/GetFreeCell"
+import GetColor from "../../../utils/GetColor"
 
-function Zona()
+function GameZone()
 {
 	const dispatch = useDispatch()
 	const field = useSelector((state: State) => state.field)
@@ -44,15 +43,7 @@ function Zona()
 						return <div key={indexY} className={styles.row}>
 							{
 								row.map((cell, indexX) => {
-									return <Cell
-										key={indexX}
-										x={indexX}
-										y={indexY}
-										width={80}
-										height={80}
-										color={"#a8a8a8"}
-										ball={cell}
-									/>
+									return <Cell key={indexX} size={{width: 80, height: 80}} position={{x: indexX, y: indexY}} ball={cell}/>
 								})
 							}
 						</div>
@@ -63,4 +54,4 @@ function Zona()
 	)
 }
 
-export default Zona
+export default GameZone
