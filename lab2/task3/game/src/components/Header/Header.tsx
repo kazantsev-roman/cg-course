@@ -21,7 +21,6 @@ function Header()
 		return null
 	}
 
-
 	return (
 		<div className={styles.wrap}>
 			<Window value={"1072"} />

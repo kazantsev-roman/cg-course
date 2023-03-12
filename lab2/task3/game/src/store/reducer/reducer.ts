@@ -1,12 +1,12 @@
 import State from "../types/State";
 import { GetInitialState } from "./initialState/initialState";
-import Action from "../actions/Action";
-import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, SET_SELECTED_BALL, UNLOCK_PLAY } from "../constants/actions";
+import Action from "../types/Action";
+import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, MOVE_BALL, SET_SELECTED_BALL, UNLOCK_PLAY } from "../constants/actions";
 import GetColor from "../../utils/GetColor";
 
 const initialState = GetInitialState()
 
-const reducer = (state: State =  initialState, action: Action) => {
+const reducer = (state: State =  initialState, action: Action): State => {
 	switch(action.type)
 	{
 	case BLOCK_PLAY:
@@ -42,6 +42,36 @@ const reducer = (state: State =  initialState, action: Action) => {
 			...state,
 			selectedBall: action.payload
 		}
+	case MOVE_BALL:
+		if (state.selectedBall === null)
+		{
+			return state
+		}
+
+		const moves = action.payload.moves
+
+		if (moves.length === 0)
+		{
+			return {
+				...state,
+				moves: moves
+			}
+		}
+
+		const toPosition = action.payload.to
+		const fromPosition = state.selectedBall.position
+
+		const filed = [...state.field]
+		filed[fromPosition.y][fromPosition.x] = null
+		filed[toPosition.y][toPosition.x] = {color: state.selectedBall.color, position: toPosition}
+
+		return {
+			...state,
+			field: filed,
+			moves: moves,
+			selectedBall: null
+		}
+
 	default:
 		return state
 	}

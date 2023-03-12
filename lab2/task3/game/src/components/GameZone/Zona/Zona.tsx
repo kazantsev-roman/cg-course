@@ -40,11 +40,19 @@ function Zona()
 		<div className={styles.wrap}>
 			<div className={styles.filed}>
 				{
-					field.map((row, index) => {
-						return <div key={index} className={styles.row}>
+					field.map((row, indexY) => {
+						return <div key={indexY} className={styles.row}>
 							{
-								row.map((cell, index) => {
-									return <Cell key={index} width={80} height={80} color={"#a8a8a8"} ball={cell}/>
+								row.map((cell, indexX) => {
+									return <Cell
+										key={indexX}
+										x={indexX}
+										y={indexY}
+										width={80}
+										height={80}
+										color={"#a8a8a8"}
+										ball={cell}
+									/>
 								})
 							}
 						</div>

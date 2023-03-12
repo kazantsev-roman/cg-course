@@ -24,9 +24,8 @@ export function GetInitialState(): State
 		canPlay: false,
 		nextBalls: [null, null, null],
 		field: fillField(),
-		shortedPath: [],
-		selectedBall: null,
-		selectedPoint: null
+		moves: [],
+		selectedBall: null
 	}
 }
 

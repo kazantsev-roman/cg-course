@@ -1,5 +1,7 @@
 import Ball from "../../types/Ball";
 import { SET_SELECTED_BALL } from "../constants/actions";
+import Point from "../../types/Point";
+import Move from "../../types/Move";
 
 type blockPlay = {
 	type: "BLOCK_PLAY",
@@ -25,6 +27,14 @@ type setSelectedBall = {
 	payload: Ball
 }
 
-type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall
+type MoveBall = {
+	type: "MOVE_BALL",
+	payload: {
+		to: Point,
+		moves: Array<Move>
+	}
+}
+
+type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall
 
 export default Action
