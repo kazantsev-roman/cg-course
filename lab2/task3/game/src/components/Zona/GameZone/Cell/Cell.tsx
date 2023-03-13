@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Ball as BallComponent } from "../Ball/Ball"
 import Step from "../Step/Step"
 import State from "../../../../store/types/State"
+import Colors from "../../../../store/constants/colors"
 import PrepareRemovedBalls from "../../../../store/actions/PrepareRemovedBalls"
 import addNextBalls from "../../../../store/actions/AddNextBalls"
 import RemoveBalls from "../../../../store/actions/RemoveBalls"
@@ -43,9 +44,11 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 		let horizontalChain: Array<Ball> = []
 		let diagonalChain: Array<Ball> = []
 
-		for (let i = 0; i < nextBalls.length; ++i)
+		const colors = [Colors.Red, Colors.Yellow, Colors.Pink, Colors.Blue, Colors.Cyan, Colors.Green]
+
+		for (let i = 0; i < colors.length; ++i)
 		{
-			const color = nextBalls[i]
+			const color = colors[i]
 			if (color === null)
 			{
 				return []
@@ -70,7 +73,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 			}
 			if (diagonalChain.length > verticalChain.length && diagonalChain.length > horizontalChain.length)
 			{
-				return verticalChain
+				return diagonalChain
 			}
 		}
 
@@ -95,7 +98,21 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 		setTimeout(() => {
 			dispatch(addNextBalls())
 			clearInterval(addBalls)
+			const chains = getChains()
+			if (chains.length !== 0)
+			{
+				RemoveChain(chains)
+			}
+			dispatch(unlockPlay())
 		}, timeOfAddition * numberOfBalls)
+	}
+
+	const RemoveChain = (chains: Array<Ball>) => {
+		dispatch(PrepareRemovedBalls(chains))
+		setTimeout(() => {
+			dispatch((RemoveBalls(chains)))
+			dispatch(unlockPlay())
+		}, 1000)
 	}
 
 	const MoveBall = () => {
@@ -112,18 +129,17 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 				const chains = getChains()
 				if (chains.length !== 0)
 				{
-					dispatch(PrepareRemovedBalls(chains))
-					setTimeout(() => {
-						dispatch((RemoveBalls(chains)))
-					}, 1000)
+					RemoveChain(chains)
 				}
 				else
 				{
 					AddNextBalls()
 				}
 			}
-
-			dispatch(unlockPlay())
+			else
+			{
+				dispatch(unlockPlay())
+			}
 		}
 	}
 
@@ -139,7 +155,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 
 		setTimeout( () => {
 			setClickedCell(false)
-		}, 1700);
+		}, 300);
 	}
 
 	return (
