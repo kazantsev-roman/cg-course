@@ -3,7 +3,7 @@ import {
 	ADD_NEXT_BALLS,
 	BLOCK_PLAY,
 	MOVE_BALL,
-	PREPARE_REMOVED_BALLS,
+	PREPARE_REMOVED_BALLS, REMOVE_BALLS,
 	SET_SELECTED_BALL,
 	UNLOCK_PLAY
 } from "../constants/actions"
@@ -81,15 +81,25 @@ const reducer = (state: State = initialState, action: Action): State => {
 		}
 	case PREPARE_REMOVED_BALLS:
 		const filedForPrepare = [...state.field]
-		const balls = action.balls
 
-		balls.forEach(ball => {
+		action.balls.forEach(ball => {
 			filedForPrepare[ball.position.y][ball.position.x] = {...ball, removed: true}
 		})
 
 		return {
 			...state,
 			field: filedForPrepare
+		}
+	case REMOVE_BALLS:
+		const filedForRemove = [...state.field]
+
+		action.balls.forEach(ball => {
+			filedForRemove[ball.position.y][ball.position.x] = null
+		})
+
+		return {
+			...state,
+			field: filedForRemove
 		}
 	default:
 		return state

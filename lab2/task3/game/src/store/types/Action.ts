@@ -34,6 +34,11 @@ type PrepareRemovedBalls = {
 	balls: Array<Ball>
 }
 
-type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls
+type RemoveBalls = {
+	type: "REMOVE_BALLS",
+	balls: Array<Ball>
+}
+
+type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls | RemoveBalls
 
 export default Action

@@ -4,20 +4,21 @@ import { useDispatch, useSelector } from "react-redux"
 import { Ball as BallComponent } from "../Ball/Ball"
 import Step from "../Step/Step"
 import State from "../../../../store/types/State"
+import PrepareRemovedBalls from "../../../../store/actions/PrepareRemovedBalls"
 import addNextBalls from "../../../../store/actions/AddNextBalls"
+import RemoveBalls from "../../../../store/actions/RemoveBalls"
 import unlockPlay from "../../../../store/actions/UnlockPlay"
 import blockPlay from "../../../../store/actions/BlockPlay"
 import moveBall from "../../../../store/actions/MoveBall"
 import addBall from "../../../../store/actions/AddBall"
+import MaxHorizontalChain from "../../../../utils/MaxHorizontalChain"
+import MaxVerticalChain from "../../../../utils/MaxVerticalChain"
+import MaxDiagonalChain from "../../../../utils/MaxDiagonalChain"
 import GetShortestPath from "../../../../utils/GetShortestPath"
 import GetFreeCell from "../../../../utils/GetFreeCell"
 import GetMoves from "../../../../utils/GetMoves"
 import Point from "../../../../types/Point"
 import Ball from "../../../../types/Ball"
-import MaxVerticalChain from "../../../../utils/MaxVerticalChain";
-import MaxHorizontalChain from "../../../../utils/MaxHorizontalChain";
-import MaxDiagonalChain from "../../../../utils/MaxDiagonalChain";
-import PrepareRemovedBalls from "../../../../store/actions/PrepareRemovedBalls";
 
 type CellProps = {
 	size: { width: number, height: number },
@@ -53,11 +54,6 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 			verticalChain = MaxVerticalChain(field, color)
 			horizontalChain = MaxHorizontalChain(field, color)
 			diagonalChain = MaxDiagonalChain(field, color)
-
-			console.log('color: ', color)
-			console.log('verticalChain: ', verticalChain)
-			console.log('horizontalChain: ', horizontalChain)
-			console.log('diagonalChain: ', diagonalChain)
 
 			if (verticalChain.length === 0 && horizontalChain.length === 0 && diagonalChain.length === 0)
 			{
@@ -116,8 +112,10 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 				const chains = getChains()
 				if (chains.length !== 0)
 				{
-					console.log('here')
 					dispatch(PrepareRemovedBalls(chains))
+					setTimeout(() => {
+						dispatch((RemoveBalls(chains)))
+					}, 1000)
 				}
 				else
 				{
