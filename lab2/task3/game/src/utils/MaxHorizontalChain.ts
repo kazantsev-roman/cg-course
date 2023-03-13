@@ -1,20 +1,19 @@
 import Ball from "../types/Ball"
 import Colors from "../store/constants/colors"
-import Point from "../types/Point"
 
-function MaxHorizontalChain(array: Array<Array<Ball | null>>, color: Colors): Array<Point>
+function MaxHorizontalChain(array: Array<Array<Ball | null>>, color: Colors): Array<Ball>
 {
-	let maxChain: Array<Point> = []
+	let maxChain: Array<Ball> = []
 
 	for (let i = 0; i < 9; ++i)
 	{
-		let chain: Array<Point> = []
+		let chain: Array<Ball> = []
 		for (let j = 0; j < 9; ++j)
 		{
 			let item = array[i][j]
 			if (item && item.color === color)
 			{
-				chain.push(item.position)
+				chain.push({position: item.position, color: color, removed: false})
 			}
 			else
 			{

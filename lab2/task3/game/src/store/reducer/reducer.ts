@@ -1,4 +1,12 @@
-import { ADD_BALL, ADD_NEXT_BALLS, BLOCK_PLAY, MOVE_BALL, SET_SELECTED_BALL, UNLOCK_PLAY } from "../constants/actions"
+import {
+	ADD_BALL,
+	ADD_NEXT_BALLS,
+	BLOCK_PLAY,
+	MOVE_BALL,
+	PREPARE_REMOVED_BALLS,
+	SET_SELECTED_BALL,
+	UNLOCK_PLAY
+} from "../constants/actions"
 import { GetInitialState } from "./initialState/initialState"
 import State from "../types/State"
 import Action from "../types/Action"
@@ -16,12 +24,12 @@ const reducer = (state: State = initialState, action: Action): State => {
 		}
 	case ADD_BALL:
 		const position = action.ball.position
-		const newFiled = [...state.field]
-		newFiled[position.y][position.x] = action.ball
+		const fieldForAdd = [...state.field]
+		fieldForAdd[position.y][position.x] = action.ball
 
 		return {
 			...state,
-			field: newFiled
+			field: fieldForAdd
 		}
 	case ADD_NEXT_BALLS:
 		const color1 = GetColor()
@@ -61,17 +69,28 @@ const reducer = (state: State = initialState, action: Action): State => {
 		const toPosition = action.toPoint
 		const fromPosition = state.selectedBall.position
 
-		const filed = [...state.field]
-		filed[fromPosition.y][fromPosition.x] = null
-		filed[toPosition.y][toPosition.x] = {color: state.selectedBall.color, position: toPosition}
+		const filedForMove = [...state.field]
+		filedForMove[fromPosition.y][fromPosition.x] = null
+		filedForMove[toPosition.y][toPosition.x] = {color: state.selectedBall.color, position: toPosition, removed: false}
 
 		return {
 			...state,
-			field: filed,
+			field: filedForMove,
 			moves: moves,
 			selectedBall: null
 		}
+	case PREPARE_REMOVED_BALLS:
+		const filedForPrepare = [...state.field]
+		const balls = action.balls
 
+		balls.forEach(ball => {
+			filedForPrepare[ball.position.y][ball.position.x] = {...ball, removed: true}
+		})
+
+		return {
+			...state,
+			field: filedForPrepare
+		}
 	default:
 		return state
 	}

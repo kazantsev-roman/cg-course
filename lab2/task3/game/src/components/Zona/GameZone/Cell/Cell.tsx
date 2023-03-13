@@ -14,6 +14,10 @@ import GetFreeCell from "../../../../utils/GetFreeCell"
 import GetMoves from "../../../../utils/GetMoves"
 import Point from "../../../../types/Point"
 import Ball from "../../../../types/Ball"
+import MaxVerticalChain from "../../../../utils/MaxVerticalChain";
+import MaxHorizontalChain from "../../../../utils/MaxHorizontalChain";
+import MaxDiagonalChain from "../../../../utils/MaxDiagonalChain";
+import PrepareRemovedBalls from "../../../../store/actions/PrepareRemovedBalls";
 
 type CellProps = {
 	size: { width: number, height: number },
@@ -26,9 +30,56 @@ type CellProps = {
 function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 {
 	const dispatch = useDispatch()
-	const state = useSelector((state: State) => state)
+	const field = useSelector((state: State) => state.field)
+	const canPlay = useSelector((state: State) => state.canPlay)
+	const nextBalls = useSelector((state: State) => state.nextBalls)
+	const selectedBall = useSelector((state: State) => state.selectedBall)
 
 	const [clickedCell, setClickedCell] = useState(false)
+
+	const getChains = () => {
+		let verticalChain: Array<Ball> = []
+		let horizontalChain: Array<Ball> = []
+		let diagonalChain: Array<Ball> = []
+
+		for (let i = 0; i < nextBalls.length; ++i)
+		{
+			const color = nextBalls[i]
+			if (color === null)
+			{
+				return []
+			}
+
+			verticalChain = MaxVerticalChain(field, color)
+			horizontalChain = MaxHorizontalChain(field, color)
+			diagonalChain = MaxDiagonalChain(field, color)
+
+			console.log('color: ', color)
+			console.log('verticalChain: ', verticalChain)
+			console.log('horizontalChain: ', horizontalChain)
+			console.log('diagonalChain: ', diagonalChain)
+
+			if (verticalChain.length === 0 && horizontalChain.length === 0 && diagonalChain.length === 0)
+			{
+				continue
+			}
+
+			if (verticalChain.length > horizontalChain.length && verticalChain.length > diagonalChain.length)
+			{
+				return verticalChain
+			}
+			if (horizontalChain.length > verticalChain.length && horizontalChain.length > diagonalChain.length)
+			{
+				return horizontalChain
+			}
+			if (diagonalChain.length > verticalChain.length && diagonalChain.length > horizontalChain.length)
+			{
+				return verticalChain
+			}
+		}
+
+		return []
+	}
 
 	const AddNextBalls = () =>
 	{
@@ -37,10 +88,10 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 		let counter = 0
 
 		const addBalls = setInterval(() => {
-			const color = state.nextBalls[counter]
-			const position = GetFreeCell(state.field)
+			const color = nextBalls[counter]
+			const position = GetFreeCell(field)
 
-			color && dispatch(addBall({position, color}))
+			color && dispatch(addBall({position, color, removed: false}))
 
 			++counter
 		}, timeOfAddition)
@@ -48,8 +99,34 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 		setTimeout(() => {
 			dispatch(addNextBalls())
 			clearInterval(addBalls)
-			dispatch(unlockPlay())
 		}, timeOfAddition * numberOfBalls)
+	}
+
+	const MoveBall = () => {
+		if(selectedBall && position !== undefined)
+		{
+			const shortedPath = GetShortestPath(field, selectedBall.position, position)
+			const moves = GetMoves(shortedPath)
+
+			dispatch(blockPlay())
+			dispatch(moveBall(position, moves))
+
+			if(moves.length > 0)
+			{
+				const chains = getChains()
+				if (chains.length !== 0)
+				{
+					console.log('here')
+					dispatch(PrepareRemovedBalls(chains))
+				}
+				else
+				{
+					AddNextBalls()
+				}
+			}
+
+			dispatch(unlockPlay())
+		}
 	}
 
 	const CellHandleClick = () =>
@@ -60,23 +137,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 		}
 
 		setClickedCell(true)
-		if(state.selectedBall && position !== undefined)
-		{
-			const shortedPath = GetShortestPath(state.field, state.selectedBall.position, position)
-			const moves = GetMoves(shortedPath)
-
-			dispatch(blockPlay())
-			dispatch(moveBall(position, moves))
-
-			if(moves.length > 0)
-			{
-				AddNextBalls()
-			}
-			else
-			{
-				dispatch(unlockPlay())
-			}
-		}
+		MoveBall()
 
 		setTimeout( () => {
 			setClickedCell(false)
@@ -89,7 +150,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 			style={{
 				width: `${size.width}px`,
 				height: `${size.height}px`,
-				cursor: state.canPlay ? "pointer" : "none"
+				cursor: canPlay ? "pointer" : "none"
 			}}
 			onClick={CellHandleClick}
 		>

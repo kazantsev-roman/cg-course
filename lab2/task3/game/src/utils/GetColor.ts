@@ -1,6 +1,6 @@
 import Colors from "../store/constants/colors"
 
-function GetColor(): string
+function GetColor(): Colors
 {
 	const randomIndex = Math.floor(Math.random() * 6)
 

@@ -1,7 +1,6 @@
-import Ball from "../../types/Ball";
-import { SET_SELECTED_BALL } from "../constants/actions";
-import Point from "../../types/Point";
-import Move from "../../types/Move";
+import Ball from "../../types/Ball"
+import Point from "../../types/Point"
+import Move from "../../types/Move"
 
 type blockPlay = {
 	type: "BLOCK_PLAY"
@@ -30,6 +29,11 @@ type MoveBall = {
 	moves: Array<Move>
 }
 
-type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall
+type PrepareRemovedBalls = {
+	type: "PREPARE_REMOVED_BALLS",
+	balls: Array<Ball>
+}
+
+type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls
 
 export default Action
