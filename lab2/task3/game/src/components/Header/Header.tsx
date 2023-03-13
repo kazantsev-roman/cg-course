@@ -4,14 +4,15 @@ import Cell from "../Zona/GameZone/Cell/Cell"
 import Window from "./Window/Window"
 import State from "../../store/types/State"
 import Ball from "../../types/Ball"
+import Colors from "../../store/constants/colors";
 
 function Header()
 {
 	const nextBalls = useSelector((state: State) => state.nextBalls)
 
-	const getBall = (color: string | null): Ball | null => {
+	const getBall = (color: Colors | null): Ball | null => {
 		return (color)
-			? { position: {x: 0, y: 0}, color: color }
+			? { position: {x: -1, y: -1}, color: color, removed: false }
 			: null
 	}
 
