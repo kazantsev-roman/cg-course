@@ -25,7 +25,11 @@ export function GetInitialState(): State
 		nextBalls: [null, null, null],
 		field: fillField(),
 		moves: [],
-		selectedBall: null
+		selectedBall: null,
+		points: {
+			king: 800,
+			player: 0
+		}
 	}
 }
 

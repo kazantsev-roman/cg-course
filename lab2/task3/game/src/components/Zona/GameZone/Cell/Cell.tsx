@@ -20,6 +20,7 @@ import GetFreeCell from "../../../../utils/GetFreeCell"
 import GetMoves from "../../../../utils/GetMoves"
 import Point from "../../../../types/Point"
 import Ball from "../../../../types/Ball"
+import GetNumberOfPoints from "../../../../utils/GetNumberOfPoints";
 
 type CellProps = {
 	size: { width: number, height: number },
@@ -110,7 +111,8 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 	const RemoveChain = (chains: Array<Ball>) => {
 		dispatch(PrepareRemovedBalls(chains))
 		setTimeout(() => {
-			dispatch((RemoveBalls(chains)))
+			const points = GetNumberOfPoints(chains.length)
+			dispatch((RemoveBalls(chains, points)))
 			dispatch(unlockPlay())
 		}, 1000)
 	}

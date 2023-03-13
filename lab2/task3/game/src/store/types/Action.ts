@@ -36,7 +36,8 @@ type PrepareRemovedBalls = {
 
 type RemoveBalls = {
 	type: "REMOVE_BALLS",
-	balls: Array<Ball>
+	balls: Array<Ball>,
+	points: number
 }
 
 type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls | RemoveBalls

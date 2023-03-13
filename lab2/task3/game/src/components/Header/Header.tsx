@@ -9,6 +9,7 @@ import Colors from "../../store/constants/colors";
 function Header()
 {
 	const nextBalls = useSelector((state: State) => state.nextBalls)
+	const points = useSelector((state: State) => state.points)
 
 	const getBall = (color: Colors | null): Ball | null => {
 		return (color)
@@ -18,7 +19,7 @@ function Header()
 
 	return (
 		<div className={styles.wrap}>
-			<Window value={"1072"} />
+			<Window value={points.king.toString()} />
 			<div className={styles.colors}>
 				<p>НОВЫЕ</p>
 				<Cell size={{width: 50, height: 50}} ball={getBall(nextBalls[0])} viewOnly={true} />
@@ -26,7 +27,7 @@ function Header()
 				<Cell size={{width: 50, height: 50}} ball={getBall(nextBalls[2])} viewOnly={true}/>
 				<p>ЦВЕТА</p>
 			</div>
-			<Window value={"200"} />
+			<Window value={points.player.toString()} />
 		</div>
 	)
 }

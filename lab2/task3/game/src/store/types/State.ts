@@ -7,7 +7,11 @@ type State = {
 	nextBalls: Array<Colors | null>,
 	field: Array<Array<Ball | null>>,
 	moves: Array<Move>,
-	selectedBall: Ball | null
+	selectedBall: Ball | null,
+	points: {
+		king: number,
+		player: number
+	}
 }
 
 export default State

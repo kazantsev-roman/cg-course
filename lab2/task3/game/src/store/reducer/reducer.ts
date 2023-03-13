@@ -99,7 +99,11 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
-			field: filedForRemove
+			field: filedForRemove,
+			points: {
+				...state.points,
+				player: state.points.player + action.points
+			}
 		}
 	default:
 		return state
