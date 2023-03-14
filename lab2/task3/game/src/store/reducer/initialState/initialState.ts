@@ -24,6 +24,7 @@ export function GetInitialState(): State
 		canPlay: false,
 		nextBalls: [null, null, null],
 		field: fillField(),
+		numberOfFreeCell: 9 * 9,
 		moves: [],
 		selectedBall: null,
 		points: {

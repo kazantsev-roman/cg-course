@@ -37,6 +37,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 	const canPlay = useSelector((state: State) => state.canPlay)
 	const nextBalls = useSelector((state: State) => state.nextBalls)
 	const selectedBall = useSelector((state: State) => state.selectedBall)
+	const numberOfFreeCell = useSelector((state: State) => state.numberOfFreeCell)
 
 	const [clickedCell, setClickedCell] = useState(false)
 
@@ -87,13 +88,18 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 		const numberOfBalls = 3
 		let counter = 0
 
+		let currentNumberOfFreeCell = numberOfFreeCell
 		const addBalls = setInterval(() => {
-			const color = nextBalls[counter]
-			const position = GetFreeCell(field)
+			if (currentNumberOfFreeCell > 0)
+			{
+				const color = nextBalls[counter]
+				const position = GetFreeCell(field)
 
-			color && dispatch(addBall({position, color, removed: false}))
+				color && dispatch(addBall({position, color, removed: false}))
 
-			++counter
+				++counter
+				--currentNumberOfFreeCell
+			}
 		}, timeOfAddition)
 
 		setTimeout(() => {

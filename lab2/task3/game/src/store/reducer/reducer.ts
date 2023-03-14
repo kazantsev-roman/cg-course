@@ -29,7 +29,8 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
-			field: fieldForAdd
+			field: fieldForAdd,
+			numberOfFreeCell: --state.numberOfFreeCell
 		}
 	case ADD_NEXT_BALLS:
 		const color1 = GetColor()
@@ -100,6 +101,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 		return {
 			...state,
 			field: filedForRemove,
+			numberOfFreeCell: state.numberOfFreeCell + action.balls.length,
 			points: {
 				...state.points,
 				player: state.points.player + action.points
