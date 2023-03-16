@@ -120,7 +120,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 			const points = GetNumberOfPoints(chains.length)
 			dispatch((RemoveBalls(chains, points)))
 			dispatch(unlockPlay())
-		}, 1000)
+		}, 900)
 	}
 
 	const MoveBall = () => {
