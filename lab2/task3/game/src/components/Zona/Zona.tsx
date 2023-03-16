@@ -11,7 +11,7 @@ function Zona()
 
 	return (
 		<div className={styles.wrap} style={{cursor: canPlay ? "default" : "none"}}>
-ис			<Player type={"king"} numberOfPoints={points.king}  name={"Лора"}/>
+			<Player type={"king"} numberOfPoints={points.king}  name={"Лора"}/>
 			<GameZone />
 			<Player type={"player"} numberOfPoints={points.player}  name={"Претендент"}/>
 		</div>
