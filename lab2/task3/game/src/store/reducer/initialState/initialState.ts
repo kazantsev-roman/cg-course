@@ -28,7 +28,7 @@ export function GetInitialState(): State
 		moves: [],
 		selectedBall: null,
 		points: {
-			king: 800,
+			king: 400,
 			player: 0
 		}
 	}
