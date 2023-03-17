@@ -13,7 +13,7 @@ function Header()
 
 	const getBall = (color: Colors | null): Ball | null => {
 		return (color)
-			? { position: {x: -1, y: -1}, color: color, removed: false }
+			? { position: {x: -1, y: -1}, color: color, removed: false, move: null }
 			: null
 	}
 

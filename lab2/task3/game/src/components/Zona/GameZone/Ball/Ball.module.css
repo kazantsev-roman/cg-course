@@ -1,5 +1,6 @@
 .ball
 {
+	position: relative;
 	width: 70%;
 	height: 70%;
 	border-radius: 50%;
@@ -20,6 +21,7 @@
 
 .clicked_ball
 {
+	transition: 0.3s;
 	position: relative;
 	width: 70%;
 	height: 70%;
@@ -36,6 +38,62 @@
 	50% {
 		bottom: 6px;
 		height: 70%;
+	}
+}
+
+.moveUp
+{
+	-webkit-animation: up 1s cubic-bezier(0.30, 2.40, 0.85, 2.50) infinite;
+}
+
+.moveDown
+{
+	-webkit-animation: down 1s cubic-bezier(0.30, 2.40, 0.85, 2.50) infinite;
+}
+
+.moveLeft
+{
+	-webkit-animation: left 1s cubic-bezier(0.30, 2.40, 0.85, 2.50) infinite;
+}
+
+.moveRight
+{
+	-webkit-animation: right 1s cubic-bezier(0.30, 2.40, 0.85, 2.50) infinite;
+}
+
+@keyframes top {
+	0% {
+		top: 0;
+	}
+	100% {
+		top: -40px;
+	}
+}
+
+@keyframes left {
+	0% {
+		left: 0;
+	}
+	100% {
+		left: -40px;
+	}
+}
+
+@keyframes bottom {
+	0% {
+		bottom: 0;
+	}
+	100% {
+		bottom: -40px;
+	}
+}
+
+@keyframes right {
+	0% {
+		right: 0;
+	}
+	100% {
+		right: -40px;
 	}
 }
 

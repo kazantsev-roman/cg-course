@@ -13,7 +13,7 @@ function MaxHorizontalChain(array: Array<Array<Ball | null>>, color: Colors): Ar
 			let item = array[i][j]
 			if (item && item.color === color)
 			{
-				chain.push({position: item.position, color: color, removed: false})
+				chain.push({position: item.position, color: color, removed: false, move: null})
 			}
 			else
 			{

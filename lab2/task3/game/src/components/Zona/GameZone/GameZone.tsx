@@ -25,7 +25,7 @@ function GameZone()
 				const position = GetFreeCell(field)
 				const color = GetColor()
 
-				dispatch(addBall({position, color, removed: false}))
+				dispatch(addBall({position, color, removed: false, move: null}))
 			}, timeOfAddition)
 
 			setTimeout(() => {

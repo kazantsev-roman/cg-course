@@ -32,7 +32,7 @@ function MaxDiagonalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 				let item = array[y][y]
 				if (item && item.color === color)
 				{
-					diagonalChain.push({position: item.position, color: color, removed: false})
+					diagonalChain.push({position: item.position, color: color, removed: false, move: null})
 				}
 				else
 				{
@@ -51,7 +51,7 @@ function MaxDiagonalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 				item = array[maxIndex - y][y]
 				if (item && item.color === color)
 				{
-					invertedDiagonalChain.push({position: item.position, color: color, removed: false})
+					invertedDiagonalChain.push({position: item.position, color: color, removed: false, move: null})
 				}
 				else
 				{
@@ -73,7 +73,7 @@ function MaxDiagonalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 				let item = array[y][array.length - k + y]
 				if (item && item.color === color)
 				{
-					aboveDiagonalChain.push({position: item.position, color: color, removed: false})
+					aboveDiagonalChain.push({position: item.position, color: color, removed: false, move: null})
 				}
 				else
 				{
@@ -92,7 +92,7 @@ function MaxDiagonalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 				item = array[array.length - k + y][y]
 				if (item && item.color === color)
 				{
-					underDiagonalChain.push({position: item.position, color: color, removed: false})
+					underDiagonalChain.push({position: item.position, color: color, removed: false, move: null})
 				}
 				else
 				{
@@ -111,7 +111,7 @@ function MaxDiagonalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 				item = array[y][maxIndex - y - array.length + k]
 				if (item && item.color === color)
 				{
-					aboveInvertedDiagonalChain.push({position: item.position, color: color, removed: false})
+					aboveInvertedDiagonalChain.push({position: item.position, color: color, removed: false, move: null})
 				}
 				else
 				{
@@ -130,7 +130,7 @@ function MaxDiagonalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 				item = array[y + array.length - k][maxIndex - y]
 				if (item && item.color === color)
 				{
-					underInvertedDiagonalChain.push({position: item.position, color: color, removed: false})
+					underInvertedDiagonalChain.push({position: item.position, color: color, removed: false, move: null})
 				}
 				else
 				{

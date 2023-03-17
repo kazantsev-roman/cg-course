@@ -13,7 +13,7 @@ function MaxVerticalChain(array: Array<Array<Ball | null>>, color: Colors): Arra
 			let item = array[j][i]
 			if (item && item.color === color)
 			{
-				chain.push({position: item.position, color: color, removed: false})
+				chain.push({position: item.position, color: color, removed: false, move: null})
 			}
 			else
 			{

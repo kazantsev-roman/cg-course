@@ -1,6 +1,7 @@
 import Ball from "../../types/Ball"
 import Point from "../../types/Point"
 import Move from "../../types/Move"
+import Direction from "../../types/Direction";
 
 type blockPlay = {
 	type: "BLOCK_PLAY"
@@ -23,9 +24,15 @@ type setSelectedBall = {
 	ball: Ball | null
 }
 
+type PrepareMove = {
+	type: "PREPARE_MOVE",
+	direction: Direction
+}
+
 type MoveBall = {
 	type: "MOVE_BALL",
 	toPoint: Point,
+	endPosition: Point,
 	moves: Array<Move>
 }
 
@@ -44,6 +51,6 @@ type NewGame = {
 	type: "NEW_GAME"
 }
 
-type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls | RemoveBalls | NewGame
+type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls | RemoveBalls | NewGame | PrepareMove
 
 export default Action

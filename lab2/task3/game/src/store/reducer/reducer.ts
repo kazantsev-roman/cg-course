@@ -2,7 +2,7 @@ import {
 	ADD_BALL,
 	ADD_NEXT_BALLS,
 	BLOCK_PLAY,
-	MOVE_BALL, NEW_GAME,
+	MOVE_BALL, NEW_GAME, PREPARE_MOVE,
 	PREPARE_REMOVED_BALLS, REMOVE_BALLS,
 	SET_SELECTED_BALL,
 	UNLOCK_PLAY
@@ -56,6 +56,27 @@ const reducer = (state: State = initialState, action: Action): State => {
 			startGame: false,
 			selectedBall: action.ball
 		}
+	case PREPARE_MOVE:
+		const ball = state.selectedBall
+		if (ball === null)
+		{
+			return state
+		}
+		const filedForPrepareMove = [...state.field]
+		filedForPrepareMove[ball.position.y][ball.position.x] = {
+			...ball,
+			move: action.direction
+		}
+		console.log('prepare')
+
+		return {
+			...state,
+			selectedBall: {
+				...ball,
+				move: action.direction
+			},
+			field: filedForPrepareMove
+		}
 	case MOVE_BALL:
 		if (state.selectedBall === null)
 		{
@@ -78,14 +99,24 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		const filedForMove = [...state.field]
 		filedForMove[fromPosition.y][fromPosition.x] = null
-		filedForMove[toPosition.y][toPosition.x] = {color: state.selectedBall.color, position: toPosition, removed: false}
+		filedForMove[toPosition.y][toPosition.x] = {color: state.selectedBall.color, position: toPosition, removed: false, move: null}
 
+		if (toPosition.x === action.endPosition.x && toPosition.y === action.endPosition.y)
+		{
+			return {
+				...state,
+				startGame: false,
+				field: filedForMove,
+				moves: moves,
+				selectedBall: null
+			}
+		}
 		return {
 			...state,
 			startGame: false,
 			field: filedForMove,
 			moves: moves,
-			selectedBall: null
+			selectedBall: {color: state.selectedBall.color, position: toPosition, removed: false, move: null}
 		}
 	case PREPARE_REMOVED_BALLS:
 		const filedForPrepare = [...state.field]

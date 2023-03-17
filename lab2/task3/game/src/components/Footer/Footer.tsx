@@ -5,7 +5,11 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import newGame from "../../store/actions/NewGame";
 
-function Footer()
+type FooterProps = {
+	setViewHelpModal: (view: boolean) => void
+}
+
+function Footer({setViewHelpModal}: FooterProps)
 {
 	const audioRef = useRef(new Audio((backgroundSound)))
 
@@ -13,14 +17,20 @@ function Footer()
 	const [isPlayed, setIsPlayed] = useState(false)
 
 	useEffect(() => {
-		isPlayed
-			? audioRef.current.play()
-			: audioRef.current.pause()
+		audioRef.current.loop = true
+		if (isPlayed)
+		{
+			audioRef.current.play()
+		}
+		else
+		{
+			audioRef.current.pause()
+		}
 	}, [isPlayed])
 
 	return (
 		<div className={styles.wrap}>
-			<Button description={"Помощь"} action={() => {}} />
+			<Button description={"Помощь"} action={() => {setViewHelpModal(true)}} />
 			<Button description={"Звук"} action={() => {setIsPlayed(!isPlayed)}} active={isPlayed} />
 			<Button description={"Новая игра"} action={() => {dispatch(newGame())}} />
 		</div>

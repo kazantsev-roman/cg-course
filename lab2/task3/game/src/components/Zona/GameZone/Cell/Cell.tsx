@@ -20,7 +20,7 @@ import GetFreeCell from "../../../../utils/GetFreeCell"
 import GetMoves from "../../../../utils/GetMoves"
 import Point from "../../../../types/Point"
 import Ball from "../../../../types/Ball"
-import GetNumberOfPoints from "../../../../utils/GetNumberOfPoints";
+import GetNumberOfPoints from "../../../../utils/GetNumberOfPoints"
 
 type CellProps = {
 	size: { width: number, height: number },
@@ -33,6 +33,7 @@ type CellProps = {
 function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 {
 	const dispatch = useDispatch()
+
 	const field = useSelector((state: State) => state.field)
 	const canPlay = useSelector((state: State) => state.canPlay)
 	const nextBalls = useSelector((state: State) => state.nextBalls)
@@ -95,7 +96,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 				const color = nextBalls[counter]
 				const position = GetFreeCell(field)
 
-				color && dispatch(addBall({position, color, removed: false}))
+				color && dispatch(addBall({position, color, removed: false, move: null}))
 
 				++counter
 				--currentNumberOfFreeCell
@@ -130,19 +131,28 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 			const moves = GetMoves(shortedPath)
 
 			dispatch(blockPlay())
-			dispatch(moveBall(position, moves))
 
 			if(moves.length > 0)
 			{
-				const chains = getChains()
-				if (chains.length !== 0)
-				{
-					RemoveChain(chains)
-				}
-				else
-				{
-					AddNextBalls()
-				}
+				const timeOfAnimation = 300
+				let index = 0
+				const movesAnimation = setInterval(() => {
+					dispatch(moveBall(moves[index].position, position, moves))
+					++index
+				}, timeOfAnimation)
+
+				setTimeout(() => {
+					clearInterval(movesAnimation)
+					const chains = getChains()
+					if (chains.length !== 0)
+					{
+						RemoveChain(chains)
+					}
+					else
+					{
+						AddNextBalls()
+					}
+				}, moves.length * timeOfAnimation)
 			}
 			else
 			{
@@ -176,7 +186,7 @@ function Cell({position, size, ball, step, viewOnly = false}: CellProps)
 			}}
 			onClick={CellHandleClick}
 		>
-			{ball && <BallComponent ball={ball} viewOnly={viewOnly}/>}
+			{ball && <BallComponent ball={ball}  viewOnly={viewOnly}/>}
 			{step && <Step/>}
 		</div>
 	)
