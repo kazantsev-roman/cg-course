@@ -13,27 +13,31 @@ function GameZone()
 {
 	const dispatch = useDispatch()
 	const field = useSelector((state: State) => state.field)
+	const startGame = useSelector((state: State) => state.startGame)
 
 	useEffect(() => {
-		const timeOfAddition = 200
-		const numberOfBalls = 5
+		if (startGame)
+		{
+			const timeOfAddition = 200
+			const numberOfBalls = 5
 
-		const addBalls = setInterval( () => {
-			const position = GetFreeCell(field)
-			const color = GetColor()
+			const addBalls = setInterval( () => {
+				const position = GetFreeCell(field)
+				const color = GetColor()
 
-			dispatch(addBall({position, color, removed: false}))
-		}, timeOfAddition)
+				dispatch(addBall({position, color, removed: false}))
+			}, timeOfAddition)
 
-		setTimeout(() => {
-			clearInterval(addBalls)
-		}, timeOfAddition * numberOfBalls)
+			setTimeout(() => {
+				clearInterval(addBalls)
+			}, timeOfAddition * numberOfBalls)
 
-		setTimeout(() => {
-			dispatch(addNextBalls())
-			dispatch(unlockPlay())
-		}, timeOfAddition * numberOfBalls + 500)
-	}, [])
+			setTimeout(() => {
+				dispatch(addNextBalls())
+				dispatch(unlockPlay())
+			}, timeOfAddition * numberOfBalls + 500)
+		}
+	}, [startGame])
 
 	return (
 		<div className={styles.wrap}>

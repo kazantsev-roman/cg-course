@@ -2,7 +2,7 @@ import {
 	ADD_BALL,
 	ADD_NEXT_BALLS,
 	BLOCK_PLAY,
-	MOVE_BALL,
+	MOVE_BALL, NEW_GAME,
 	PREPARE_REMOVED_BALLS, REMOVE_BALLS,
 	SET_SELECTED_BALL,
 	UNLOCK_PLAY
@@ -20,6 +20,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 	case BLOCK_PLAY:
 		return {
 			...state,
+			startGame: false,
 			canPlay: false
 		}
 	case ADD_BALL:
@@ -29,6 +30,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
+			startGame: false,
 			field: fieldForAdd,
 			numberOfFreeCell: --state.numberOfFreeCell
 		}
@@ -39,16 +41,19 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
+			startGame: false,
 			nextBalls: [color1, color2, color3]
 		}
 	case UNLOCK_PLAY:
 		return {
 			...state,
+			startGame: false,
 			canPlay: true
 		}
 	case SET_SELECTED_BALL:
 		return {
 			...state,
+			startGame: false,
 			selectedBall: action.ball
 		}
 	case MOVE_BALL:
@@ -63,6 +68,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 		{
 			return {
 				...state,
+				startGame: false,
 				moves: moves
 			}
 		}
@@ -76,6 +82,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
+			startGame: false,
 			field: filedForMove,
 			moves: moves,
 			selectedBall: null
@@ -89,6 +96,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
+			startGame: false,
 			field: filedForPrepare
 		}
 	case REMOVE_BALLS:
@@ -100,6 +108,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 
 		return {
 			...state,
+			startGame: false,
 			field: filedForRemove,
 			numberOfFreeCell: state.numberOfFreeCell + action.balls.length,
 			points: {
@@ -107,6 +116,8 @@ const reducer = (state: State = initialState, action: Action): State => {
 				player: state.points.player + action.points
 			}
 		}
+	case NEW_GAME:
+		return GetInitialState()
 	default:
 		return state
 	}

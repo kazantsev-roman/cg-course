@@ -11,7 +11,7 @@ function Game()
 			<Header/>
 			<Zona/>
 			<Footer />
-			{/*<GameOverModal />*/}
+			<GameOverModal />
 		</div>
 	)
 }

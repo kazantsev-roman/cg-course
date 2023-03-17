@@ -40,6 +40,10 @@ type RemoveBalls = {
 	points: number
 }
 
-type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls | RemoveBalls
+type NewGame = {
+	type: "NEW_GAME"
+}
+
+type Action = blockPlay | addBall | addNextBalls | unlockPlay | setSelectedBall | MoveBall | PrepareRemovedBalls | RemoveBalls | NewGame
 
 export default Action

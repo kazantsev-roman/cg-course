@@ -3,6 +3,7 @@ import Ball from "../../types/Ball"
 import Move from "../../types/Move"
 
 type State = {
+	startGame: boolean,
 	canPlay: boolean,
 	nextBalls: Array<Colors | null>,
 	field: Array<Array<Ball | null>>,

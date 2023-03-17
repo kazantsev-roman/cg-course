@@ -21,6 +21,7 @@ function fillField(): Array<Array<Ball | null>>
 export function GetInitialState(): State
 {
 	return {
+		startGame: true,
 		canPlay: false,
 		nextBalls: [null, null, null],
 		field: fillField(),
