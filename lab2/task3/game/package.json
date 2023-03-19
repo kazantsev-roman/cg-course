@@ -1,6 +1,6 @@
 {
 	"name": "game",
-	"homepage": "http://kazantsev-roman.github.io/color-lines",
+	"homepage": "http://kazantsev-roman.github.io/cg-course",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
