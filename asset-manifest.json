@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/color-lines/static/css/main.e4928628.css",
-    "main.js": "/color-lines/static/js/main.7b7577c5.js",
-    "static/media/background.mp3": "/color-lines/static/media/background.a651b7ed4a5426b40ec2.mp3",
-    "static/media/Fortuna Gothic FlorishC.ttf": "/color-lines/static/media/Fortuna Gothic FlorishC.d36718968c11cef29a8e.ttf",
-    "static/media/king.png": "/color-lines/static/media/king.8979bfe3fc5354f7e4cf.png",
-    "static/media/player.png": "/color-lines/static/media/player.d6ec87cdfda7b22a4490.png",
-    "index.html": "/color-lines/index.html",
-    "main.e4928628.css.map": "/color-lines/static/css/main.e4928628.css.map",
-    "main.7b7577c5.js.map": "/color-lines/static/js/main.7b7577c5.js.map"
+    "main.css": "/cg-course/static/css/main.5c5437a2.css",
+    "main.js": "/cg-course/static/js/main.17380ed7.js",
+    "static/media/background.mp3": "/cg-course/static/media/background.a651b7ed4a5426b40ec2.mp3",
+    "static/media/Fortuna Gothic FlorishC.ttf": "/cg-course/static/media/Fortuna Gothic FlorishC.d36718968c11cef29a8e.ttf",
+    "static/media/king.png": "/cg-course/static/media/king.8979bfe3fc5354f7e4cf.png",
+    "static/media/player.png": "/cg-course/static/media/player.d6ec87cdfda7b22a4490.png",
+    "index.html": "/cg-course/index.html",
+    "main.5c5437a2.css.map": "/cg-course/static/css/main.5c5437a2.css.map",
+    "main.17380ed7.js.map": "/cg-course/static/js/main.17380ed7.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4928628.css",
-    "static/js/main.7b7577c5.js"
+    "static/css/main.5c5437a2.css",
+    "static/js/main.17380ed7.js"
   ]
 }
