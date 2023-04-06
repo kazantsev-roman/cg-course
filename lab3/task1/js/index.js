@@ -37,6 +37,31 @@ function MovePoint(event) {
     this.vector[Axes.z] = event.object.position.z
 }
 
+const startVectorPoint = GetPoint(...vectors.startVector)
+const aCP1Point = GetPoint(...vectors.aCP1)
+const aCP2Point = GetPoint(...vectors.aCP2)
+const endVectorPoint = GetPoint(...vectors.endVector)
+
+const startVectorPointControls = new DragControls([startVectorPoint], camera, renderer.domElement)
+const aCP1PointControls = new DragControls([aCP1Point], camera, renderer.domElement)
+const aCP2PointControls = new DragControls([aCP2Point], camera, renderer.domElement)
+const endVectorPointControls = new DragControls([endVectorPoint], camera, renderer.domElement)
+
+startVectorPointControls.addEventListener('drag',
+    MovePoint.bind({vector: vectors.startVector})
+)
+aCP1PointControls.addEventListener('drag',
+    MovePoint.bind({vector: vectors.aCP1})
+)
+aCP2PointControls.addEventListener('drag',
+    MovePoint.bind({vector: vectors.aCP2})
+)
+endVectorPointControls.addEventListener('drag',
+    MovePoint.bind({vector: vectors.endVector})
+)
+
+camera.position.set(0, 0, 40)
+
 function animate()
 {
     scene.clear()
@@ -44,38 +69,14 @@ function animate()
     const line1 = GetLine(...vectors.startVector, ...vectors.aCP1)
     const line2 = GetLine(...vectors.aCP1, ...vectors.aCP2)
     const line3 = GetLine(...vectors.aCP2, ...vectors.endVector)
-    scene.add(line1, line2, line3)
-
-    const startVectorPoint = GetPoint(...vectors.startVector)
-    const aCP1Point = GetPoint(...vectors.aCP1)
-    const aCP2Point = GetPoint(...vectors.aCP2)
-    const endVectorPoint = GetPoint(...vectors.endVector)
-    scene.add(startVectorPoint, aCP1Point, aCP2Point, endVectorPoint)
-
-    const startVectorPointControls = new DragControls([startVectorPoint], camera, renderer.domElement)
-    const aCP1PointControls = new DragControls([aCP1Point], camera, renderer.domElement)
-    const aCP2PointControls = new DragControls([aCP2Point], camera, renderer.domElement)
-    const endVectorPointControls = new DragControls([endVectorPoint], camera, renderer.domElement)
-
-    startVectorPointControls.addEventListener('drag',
-        MovePoint.bind({vector: vectors.startVector})
-    )
-    aCP1PointControls.addEventListener('drag',
-        MovePoint.bind({vector: vectors.aCP1})
-    )
-    aCP2PointControls.addEventListener('drag',
-        MovePoint.bind({vector: vectors.aCP2})
-    )
-    endVectorPointControls.addEventListener('drag',
-        MovePoint.bind({vector: vectors.endVector})
-    )
 
     const curveObject = GetCubicBezierCurve(vectors)
+
     scene.add(curveObject)
+    scene.add(line1, line2, line3)
+    scene.add(startVectorPoint, aCP1Point, aCP2Point, endVectorPoint)
 
     requestAnimationFrame(animate)
     renderer.render( scene, camera )
 }
 animate()
-
-camera.position.set(0, 0, 40)
