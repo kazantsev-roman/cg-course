@@ -2,14 +2,6 @@ import * as THREE from 'three'
 import { DragControls } from 'three/addons/controls/DragControls.js'
 import { GetCubicBezierCurve, GetLine, GetPoint } from "./objects.js"
 
-const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
-
-const renderer = new THREE.WebGLRenderer()
-renderer.setClearColor(0x000000, 0)
-renderer.setSize( window.innerWidth, window.innerHeight )
-document.body.appendChild( renderer.domElement )
-
 const Axes = {
     x: 0,
     y: 1,
@@ -31,25 +23,18 @@ const vectors = {
     ]
 }
 
-const MoveStartVectorPoint = (event) => {
-    vectors.startVector[Axes.x] = event.object.position.x
-    vectors.startVector[Axes.y] = event.object.position.y
-    vectors.startVector[Axes.z] = event.object.position.z
-}
-const MoveACP1Point = (event) => {
-    vectors.aCP1[Axes.x] = event.object.position.x
-    vectors.aCP1[Axes.y] = event.object.position.y
-    vectors.aCP1[Axes.z] = event.object.position.z
-}
-const MoveACP2Point = (event) => {
-    vectors.aCP2[Axes.x] = event.object.position.x
-    vectors.aCP2[Axes.y] = event.object.position.y
-    vectors.aCP2[Axes.z] = event.object.position.z
-}
-const MoveEndVectorPoint = (event) => {
-    vectors.endVector[Axes.x] = event.object.position.x
-    vectors.endVector[Axes.y] = event.object.position.y
-    vectors.endVector[Axes.z] = event.object.position.z
+const scene = new THREE.Scene()
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+
+const renderer = new THREE.WebGLRenderer()
+renderer.setClearColor(0x000000, 0)
+renderer.setSize( window.innerWidth, window.innerHeight )
+document.body.appendChild( renderer.domElement )
+
+function MovePoint(event) {
+    this.vector[Axes.x] = event.object.position.x
+    this.vector[Axes.y] = event.object.position.y
+    this.vector[Axes.z] = event.object.position.z
 }
 
 function animate()
@@ -72,13 +57,22 @@ function animate()
     const aCP2PointControls = new DragControls([aCP2Point], camera, renderer.domElement)
     const endVectorPointControls = new DragControls([endVectorPoint], camera, renderer.domElement)
 
-    startVectorPointControls.addEventListener('drag', MoveStartVectorPoint)
-    aCP1PointControls.addEventListener('drag', MoveACP1Point)
-    aCP2PointControls.addEventListener('drag', MoveACP2Point)
-    endVectorPointControls.addEventListener('drag', MoveEndVectorPoint)
+    startVectorPointControls.addEventListener('drag',
+        MovePoint.bind({vector: vectors.startVector})
+    )
+    aCP1PointControls.addEventListener('drag',
+        MovePoint.bind({vector: vectors.aCP1})
+    )
+    aCP2PointControls.addEventListener('drag',
+        MovePoint.bind({vector: vectors.aCP2})
+    )
+    endVectorPointControls.addEventListener('drag',
+        MovePoint.bind({vector: vectors.endVector})
+    )
 
     const curveObject = GetCubicBezierCurve(vectors)
     scene.add(curveObject)
+
     requestAnimationFrame(animate)
     renderer.render( scene, camera )
 }
