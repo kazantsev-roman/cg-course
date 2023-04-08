@@ -47,16 +47,20 @@ const aCP1PointControls = new DragControls([aCP1Point], camera, renderer.domElem
 const aCP2PointControls = new DragControls([aCP2Point], camera, renderer.domElement)
 const endVectorPointControls = new DragControls([endVectorPoint], camera, renderer.domElement)
 
-startVectorPointControls.addEventListener('drag',
+startVectorPointControls.addEventListener(
+    'drag',
     MovePoint.bind({vector: vectors.startVector})
 )
-aCP1PointControls.addEventListener('drag',
+aCP1PointControls.addEventListener(
+    'drag',
     MovePoint.bind({vector: vectors.aCP1})
 )
-aCP2PointControls.addEventListener('drag',
+aCP2PointControls.addEventListener(
+    'drag',
     MovePoint.bind({vector: vectors.aCP2})
 )
-endVectorPointControls.addEventListener('drag',
+endVectorPointControls.addEventListener(
+    'drag',
     MovePoint.bind({vector: vectors.endVector})
 )
 
@@ -80,3 +84,11 @@ function animate()
     renderer.render( scene, camera )
 }
 animate()
+
+window.addEventListener( 'resize', onWindowResize, false )
+function onWindowResize()
+{
+    camera.aspect = window.innerWidth / window.innerHeight
+    camera.updateProjectionMatrix()
+    renderer.setSize( window.innerWidth, window.innerHeight )
+}
