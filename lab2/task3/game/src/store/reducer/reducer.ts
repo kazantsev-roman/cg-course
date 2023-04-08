@@ -67,7 +67,6 @@ const reducer = (state: State = initialState, action: Action): State => {
 			...ball,
 			move: action.direction
 		}
-		console.log('prepare')
 
 		return {
 			...state,
@@ -111,6 +110,7 @@ const reducer = (state: State = initialState, action: Action): State => {
 				selectedBall: null
 			}
 		}
+
 		return {
 			...state,
 			startGame: false,
