@@ -1,19 +1,26 @@
 import * as THREE from 'three'
-import {GetCrankcase, GetCrankcaseBackground, GetCrankShaft} from "./objects.js"
-
-const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
+import { GetMooseGroup } from "./objects.js"
+import { DragControls } from 'three/addons/controls/DragControls.js'
 
 const renderer = new THREE.WebGLRenderer()
+renderer.setSize(window.innerWidth, window.innerHeight)
 renderer.setClearColor(0x000000, 0)
-renderer.setSize( window.innerWidth, window.innerHeight )
-document.body.appendChild( renderer.domElement )
 
-const carterBackground = GetCrankcaseBackground(0, -0.5, 0xe5e6e8)
-const carter = GetCrankcase(0, -0.5, 0x656565)
-const [circle, crankshaft] = GetCrankShaft(0.2, 0, -1.8, 0xfffdff)
-scene.add(carterBackground, carter, circle, crankshaft)
+document.body.appendChild(renderer.domElement)
 
-camera.position.set(0, 0, 10)
+const scene = new THREE.Scene()
+const camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 2)
+camera.position.set(0, 0, 3)
 
-renderer.render( scene, camera )
+const mooseGroup = GetMooseGroup()
+scene.add(mooseGroup)
+
+const controls = new DragControls([mooseGroup], camera, renderer.domElement)
+controls.transformGroup = true
+
+function animate() {
+    requestAnimationFrame(animate)
+    renderer.render(scene, camera)
+}
+
+animate()
