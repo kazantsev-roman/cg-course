@@ -26,7 +26,7 @@ const mobiusFunction = ( u, v, target ) => {
     target.set( x, y, z )
 }
 
-const geometry = new ParametricGeometry( mobiusFunction, 100, 999 )
+const geometry = new ParametricGeometry( mobiusFunction, 999, 999 )
 const material = new THREE.ShaderMaterial({
     uniforms: {
         color1: { value: new THREE.Color("red") },
