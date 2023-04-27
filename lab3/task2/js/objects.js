@@ -29,7 +29,7 @@ function GetCircle(radius, x, y, z, color, factorX = 1.35)
     const line = new THREE.LineSegments(
         new THREE.EdgesGeometry(geometry),
         new THREE.LineBasicMaterial({
-            color: 0x8c3d1c,
+            color: 0x8c3d1c
         })
     )
     line.position.set(x, y, z)
@@ -350,6 +350,11 @@ function GetRightSmile(x, y, z, color)
     return smile
 }
 
+/**
+ * Получить группу объектов для отображения Лосяша
+ *
+ * @return {THREE.Group} Группа объектов.
+ */
 export function GetMooseGroup()
 {
     const group = new THREE.Group()
