@@ -37,8 +37,7 @@ class Field {
      * @public
      * @return {Cell[]}
      */
-    GetCells()
-    {
+    GetCells() {
         return this.cells
     }
 
@@ -46,8 +45,7 @@ class Field {
      * @public
      * @param {Function} gameOverAction
      */
-    CheckCells(gameOverAction)
-    {
+    CheckCells(gameOverAction) {
         if (!this.isReadyForPlaying) {
             return
         }
@@ -70,8 +68,7 @@ class Field {
                 this.secondSelectedCell?.ChangeVisibility()
                 this.secondSelectedCell = null
             }, 1000)
-        } else if (this.GetCells().length === 0 && this.isReadyForPlaying)
-        {
+        } else if (this.GetCells().length === 0 && this.isReadyForPlaying) {
             this.isReadyForPlaying = false
             setTimeout(() => {
                 gameOverAction()
@@ -83,11 +80,9 @@ class Field {
      * @public
      * @param {THREE.Mesh} mesh
      */
-    SetSelectedCell(mesh)
-    {
+    SetSelectedCell(mesh) {
         const cell = this.GetCellByMesh(mesh)
-        if (this.firstSelectedCell === null)
-        {
+        if (this.firstSelectedCell === null) {
             this.firstSelectedCell = cell
             cell.ChangeVisibility()
             return
@@ -117,10 +112,8 @@ class Field {
      * @private
      * @return {boolean}
      */
-    AreSelectedCellsEqual()
-    {
-        if (this.firstSelectedCell === null || this.secondSelectedCell === null)
-        {
+    AreSelectedCellsEqual() {
+        if (this.firstSelectedCell === null || this.secondSelectedCell === null) {
             return false
         }
 
@@ -132,11 +125,9 @@ class Field {
      * @param {THREE.Mesh} mesh
      * @return {Cell}
      */
-    GetCellByMesh(mesh)
-    {
+    GetCellByMesh(mesh) {
         const cells = this.cells.filter(cell => {
-            if (cell.position.x === mesh.position.x && cell.position.y === mesh.position.y && cell.position.z === mesh.position.z)
-            {
+            if (cell.position.x === mesh.position.x && cell.position.y === mesh.position.y && cell.position.z === mesh.position.z) {
                 return cell
             }
         })
@@ -147,8 +138,7 @@ class Field {
     /**
      * @private
      */
-    DeleteCells()
-    {
+    DeleteCells() {
         this.cells = this.cells.filter(cell => cell.GetTextureId() !== this.secondSelectedCell?.textureId)
 
         this.firstSelectedCell = null

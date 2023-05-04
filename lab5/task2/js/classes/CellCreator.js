@@ -17,19 +17,15 @@ class CellCreator {
     cells = []
 
     /** @constructor */
-    constructor()
-    {
+    constructor() {
         const numberOfCells = 28
-        for (let id = 0; id < numberOfCells / 2; ++id)
-        {
+        for (let id = 0; id < numberOfCells / 2; ++id) {
             this.textureIds.push(id)
             this.textureIds.push(id) // для пары
         }
 
-        for (let y = 2; y <= 8; y += 2)
-        {
-            for (let x = -6; x <= 6; x += 2)
-            {
+        for (let y = 2; y <= 8; y += 2) {
+            for (let x = -6; x <= 6; x += 2) {
                 this.positions.push({
                     x: x,
                     y: y,
@@ -43,8 +39,7 @@ class CellCreator {
          */
         let cells = []
 
-        for (let index = 0; index < 28; ++index)
-        {
+        for (let index = 0; index < 28; ++index) {
             const textureId = this.GetFreeTextureId()
             const position = this.GetFreePosition()
 
@@ -60,16 +55,14 @@ class CellCreator {
      * @public
     * @return {Cell[]}
     */
-    GetCells()
-    {
+    GetCells() {
         return this.cells
     }
 
     /** @private
      * @return {{x: number, y: number, z: number}}
      */
-    GetFreePosition()
-    {
+    GetFreePosition() {
         const randomIndex = Math.floor(Math.random() * this.positions.length)
         const position = this.positions[randomIndex]
         this.positions.splice(randomIndex, 1)
@@ -80,8 +73,7 @@ class CellCreator {
     /** @private
      * @return {number}
      */
-    GetFreeTextureId()
-    {
+    GetFreeTextureId() {
         const randomIndex = Math.floor(Math.random() * this.textureIds.length)
         const id = this.textureIds[randomIndex]
         this.textureIds.splice(randomIndex, 1)

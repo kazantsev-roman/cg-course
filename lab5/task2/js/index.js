@@ -17,7 +17,7 @@ const cells = cellCreator.GetCells()
 
 const field = new Field(cells)
 
-const GameOverAction = () => {
+function GameOverAction() {
     if (confirm('Игра окончена! Вы большой молодец :)')) {
         window.location.reload()
     }

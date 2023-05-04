@@ -20,8 +20,7 @@ class Cell {
      * @param {{x: number, y: number, z: number}} position
      * @param {number} textureId
      */
-    constructor(position, textureId)
-    {
+    constructor(position, textureId) {
         this.position = position
         this.textureId = textureId
 
@@ -49,8 +48,7 @@ class Cell {
     }
 
     /** @public */
-    ChangeVisibility()
-    {
+    ChangeVisibility() {
         new TWEEN.Tween( this.mesh.rotation )
             .to( { y:  this.mesh.rotation.y + Math.PI}, 1000 )
             .easing( TWEEN.Easing.Quadratic.Out)
@@ -60,16 +58,14 @@ class Cell {
     /** @public
      * @return {number}
      */
-    GetTextureId()
-    {
+    GetTextureId() {
         return this.textureId
     }
 
     /** @public
      * @return {THREE.Mesh}
      */
-    GetMesh()
-    {
+    GetMesh() {
         return this.mesh
     }
 }
