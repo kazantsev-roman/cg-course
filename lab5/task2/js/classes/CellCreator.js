@@ -1,13 +1,22 @@
 import { Cell } from "./Cell.js"
 
 class CellCreator {
-    /** @private */
+    /** @private
+     * @type {number[]}
+     */
     textureIds = []
-    /** @private */
+
+    /** @private
+     * @type {{x: number, y: number, z: number}[]}
+     */
     positions = []
-    /** @private */
+
+    /** @private
+     * @type {Cell[]}
+     */
     cells = []
 
+    /** @constructor */
     constructor()
     {
         const numberOfCells = 28
@@ -30,7 +39,7 @@ class CellCreator {
         }
 
         /**
-         * @type {[THREE.Mesh]}
+         * @type {THREE.Mesh[]}
          */
         let cells = []
 
@@ -49,14 +58,16 @@ class CellCreator {
 
     /**
      * @public
-    * @return {[Cell]} cells
+    * @return {Cell[]}
     */
     GetCells()
     {
         return this.cells
     }
 
-    /** @private */
+    /** @private
+     * @return {{x: number, y: number, z: number}}
+     */
     GetFreePosition()
     {
         const randomIndex = Math.floor(Math.random() * this.positions.length)
@@ -66,7 +77,9 @@ class CellCreator {
         return position
     }
 
-    /** @private */
+    /** @private
+     * @return {number}
+     */
     GetFreeTextureId()
     {
         const randomIndex = Math.floor(Math.random() * this.textureIds.length)

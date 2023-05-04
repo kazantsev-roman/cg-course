@@ -1,4 +1,4 @@
-import * as THREE from "three";
+import * as THREE from "three"
 
 class Cell {
     /** @private
@@ -16,6 +16,10 @@ class Cell {
      */
     mesh
 
+    /** @constructor
+     * @param {{x: number, y: number, z: number}} position
+     * @param {number} textureId
+     */
     constructor(position, textureId)
     {
         this.position = position
@@ -53,13 +57,17 @@ class Cell {
             .start()
     }
 
-    /** @public */
+    /** @public
+     * @return {number}
+     */
     GetTextureId()
     {
         return this.textureId
     }
 
-    /** @public */
+    /** @public
+     * @return {THREE.Mesh}
+     */
     GetMesh()
     {
         return this.mesh
